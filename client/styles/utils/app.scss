@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap');
+
+$fontFamily: 'Urbanist', sans-serif;
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+body {
+  background-color: #fffef6;
+  font-family: $fontFamily; font-size: 1.1rem;
+}
+
+p {
+  line-height: 1.4rem;
+}
+
+h1, h2, h3 {
+  line-height: 2rem;
+}
+
+input, button {
+  font-family: $fontFamily; font-size: 1.1rem;
+  background-color: transparent;
+  border-radius: 0;
+}

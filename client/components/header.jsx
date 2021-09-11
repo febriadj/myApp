@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import UserIcon from '../assets/images/userIcon.png';
 import SearchIcon from '../assets/images/searchIcon.png';
 
-function Header() {
+function Header({ formLogin, formLoginValue }) {
   return (
     <div className="header">
       <div className="headerWrap">
@@ -20,7 +20,14 @@ function Header() {
         </div>
         <div className="headerIcons">
           <button type="button" className="headerBtn"><img src={SearchIcon} alt={SearchIcon} className="icon userIcon" /></button>
-          <button type="button" className="headerBtn"><img src={UserIcon} alt={UserIcon} className="icon searchIcon" /></button>
+          <button
+            type="button"
+            className="headerBtn"
+            value={formLoginValue}
+            onClick={formLogin}
+          >
+            <img src={UserIcon} alt={UserIcon} className="icon searchIcon" />
+          </button>
         </div>
       </div>
     </div>

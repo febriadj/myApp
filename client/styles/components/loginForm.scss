@@ -1,0 +1,44 @@
+.login {
+  position: fixed;
+  display: flex; justify-content: center;
+  width: 100%; height: 100%;
+
+  .loginWrap {
+    width: 1224px;
+    display: flex; justify-content: flex-end; align-items: flex-start;
+    // Formulir Login
+    .loginForm {
+      width: 400px;
+      background-color: #f3f0df;
+      display: grid; grid-template-columns: 1fr; gap: 20px;
+      padding: 20px;
+      transform: translate(-40px, 70px);
+      // Header Formulir Login
+      h2 {
+        opacity: 0.5;
+        margin: 0 0 0 15px;
+      }
+      // Inputan users
+      .input {
+        border-bottom: 1px solid #b3b1a5;
+        padding: 10px 15px;
+      }
+      // Button Submit
+      .submit {
+        background-color: #ddd9c9;
+        padding: 10px 0;
+      }
+      // Register Button
+      .ask {
+        margin: 20px 0 0 0;
+        font-size: 1rem;
+        button {
+          font-size: 1rem;
+          text-decoration: underline;
+          margin: 0 0 0 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,18 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap');
 $fontFamily: 'Urbanist', sans-serif;
-
-* {
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
-}
-
-body {
-  background-color: #fffdf0;
-  line-height: 1.4rem;
-  font-family: $fontFamily; font-size: 1.1rem;
-}
 
 .default {
   position: absolute;
@@ -50,7 +36,7 @@ body {
           color: #000;
           transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
           padding: 2px 12px;
-          background-color: #f1edd6;
+          background-color: #f3f0df;
           text-decoration: none;
           border-radius: 2rem;
         }

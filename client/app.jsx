@@ -9,6 +9,8 @@ import {
 import Default from './pages/default';
 import Home from './pages/home';
 
+import './styles/utils/app.scss';
+
 export default function App() {
   return (
     <Router>
