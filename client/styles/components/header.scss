@@ -1,0 +1,63 @@
+.header {
+  position: absolute;
+  width: 100%;
+  display: flex; justify-content: center;
+  z-index: 9;
+  .headerWrap {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 1224px; height: 70px;
+    margin: 0 20px;
+    .headerLogoAndMenu {
+      display: flex; align-items: center;
+      // Link Header Logo
+      .headerLogo {
+        text-decoration: none;
+        color: #000;
+      }
+      // Breaker Line atau garis pemisah antara Logo dengan Menu
+      .headerBreakerLine {
+        display: block;
+        width: 1px; height: 25px;
+        background-color: #000;
+        margin: 0 40px 0 20px;
+      }
+      // Header Menu
+      .headerMenu {
+        margin: 0 0 0 40px;
+        display: flex; align-items: center;
+        .link {
+          margin: 0 5px 0 0;
+          padding: 2px 12px;
+          color: #000;
+          transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
+          text-decoration: none;
+          text-align: center;
+          border-radius: 2rem;
+        }
+        .link:hover {
+          background-color: #f1edd6;
+        }
+      }
+    }
+    // Header Icons
+    .headerIcons {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      // Button Icon Header
+      .headerBtn {
+        cursor: pointer;
+        background-color: transparent;
+        width: 40px; height: 40px;
+        display: flex; justify-content: center; align-items: center;
+        border-radius: 50%;
+        transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
+        .icon {
+          width: 1.3rem;
+        }
+      }
+      // Button Icon Header saat di Hover
+      .headerBtn:hover {
+        background-color: #f1edd6;
+      }
+    }
+  }
+}

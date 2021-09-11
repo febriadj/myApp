@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap');
+$fontFamily: 'Urbanist', sans-serif;
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+body {
+  background-color: #fffdf0;
+  line-height: 1.4rem;
+  font-family: $fontFamily; font-size: 1.1rem;
+}
+
+.default {
+  position: absolute;
+  display: flex; justify-content: center; align-items: center;
+  width: 100%; height: 100%;
+
+  .defaultWrap {
+    display: flex; align-items: center;
+    width: 768px;
+    margin: 0 40px;
+
+    // Header 1 404
+    .default404 {
+      font-size: 9rem;
+      opacity: 0.5;
+    }
+    // Breaker Line (Garis Pemisah Antara H1 404 dengan Paragraf)
+    .defaultBreakerLine {
+      display: block;
+      background-color: #000;
+      margin: 0 20px;
+      width: 1px; height: 140px;
+    }
+    // Pesan untuk halaman 404
+    .defaultTxt {
+      p:nth-child(2) { margin: 10px 0 0 0; }
+
+      // Tautan yang direkomendasikan
+      .defaultLinks {
+        display: flex; align-items: center;
+        margin: 20px 0 0 0;
+
+        .link {
+          margin: 0 10px 0 0;
+          color: #000;
+          transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
+          padding: 2px 12px;
+          background-color: #f1edd6;
+          text-decoration: none;
+          border-radius: 2rem;
+        }
+        .link:hover {
+          filter: brightness(0.93);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .default {
+    .defaultWrap {
+      flex-direction: column; align-items: flex-start;
+
+      .default404 { font-size: 7rem }
+      .defaultBreakerLine {
+        width: 100%; height: 1px;
+        margin: 60px 0 20px 0;
+      }
+    }
+  }
+}
