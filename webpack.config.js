@@ -12,19 +12,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(jsx?)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
         test: /\.(css|s[ac]ss)$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader', 'url-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(md|png|jpe?g|gif)$/,
         exclude: /node_modules/,
-        use: ['file-loader', 'url-loader'],
+        loader: 'file-loader',
       },
     ],
   },
