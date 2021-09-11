@@ -23,6 +23,11 @@
         "brace-style": "off",
         "semi": "off",
         "no-console": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "no-underscore-dangle": "off",
+        "react/self-closing-comp": "off",
+        "react/jsx-fragments": "off",
+        "react/prop-types": "off",
+        "react/no-unescaped-entities": "off"
     }
 }
