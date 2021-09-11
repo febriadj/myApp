@@ -1,11 +1,11 @@
 .header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   display: flex; justify-content: center;
   z-index: 9;
   .headerWrap {
     display: flex; justify-content: space-between; align-items: center;
-    width: 1224px; height: 70px;
+    width: 1224px; height: 60px;
     margin: 0 20px;
     .headerLogoAndMenu {
       display: flex; align-items: center;
@@ -25,15 +25,7 @@
       .headerMenu {
         margin: 0 0 0 40px;
         display: flex; align-items: center;
-        .link {
-          margin: 0 5px 0 0;
-          padding: 2px 12px;
-          color: #000;
-          transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
-          text-decoration: none;
-          text-align: center;
-          border-radius: 2rem;
-        }
+        .link { margin: 0 5px 0 0; }
         .link:hover {
           background-color: #f3f0df;
         }

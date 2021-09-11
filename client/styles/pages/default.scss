@@ -33,12 +33,7 @@ $fontFamily: 'Urbanist', sans-serif;
 
         .link {
           margin: 0 10px 0 0;
-          color: #000;
-          transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
-          padding: 2px 12px;
           background-color: #f3f0df;
-          text-decoration: none;
-          border-radius: 2rem;
         }
         .link:hover {
           filter: brightness(0.93);

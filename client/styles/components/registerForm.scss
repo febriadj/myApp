@@ -1,14 +1,14 @@
-.login {
+.register {
   position: fixed;
   display: flex; justify-content: center;
   width: 100%;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
-  
-  .loginWrap {
+
+  .registerWrap {
     width: 1224px;
     display: flex; justify-content: flex-end; align-items: flex-start;
 
-    .loginForm {
+    .registerForm {
       position: relative;
       width: 400px;
       background-color: #f3f0df;

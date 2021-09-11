@@ -1,12 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap');
-
 $fontFamily: 'Urbanist', sans-serif;
 
 * {
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
+  padding: 0; margin: 0;
+  border: none; outline: none;
 }
 
 body {
@@ -14,16 +11,25 @@ body {
   font-family: $fontFamily; font-size: 1.1rem;
 }
 
-p {
-  line-height: 1.4rem;
-}
-
-h1, h2, h3 {
-  line-height: 2rem;
-}
+p { line-height: 1.4rem; }
+h1, h2, h3 { line-height: 2rem; }
 
 input, button {
   font-family: $fontFamily; font-size: 1.1rem;
   background-color: transparent;
   border-radius: 0;
+}
+
+input:-webkit-autofill {
+  transition: "color 9999s ease-out, background-color 9999s ease-out";
+  transition-delay: 9999s;
+}
+
+.link {
+  padding: 2px 12px;
+  color: #000;
+  transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 2rem;
 }

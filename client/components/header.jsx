@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import UserIcon from '../assets/images/userIcon.png';
 import SearchIcon from '../assets/images/searchIcon.png';
 
-function Header({ formLogin, formLoginValue }) {
+function Header({ openLoginForm, bgIcon }) {
   return (
     <div className="header">
       <div className="headerWrap">
@@ -23,8 +23,8 @@ function Header({ formLogin, formLoginValue }) {
           <button
             type="button"
             className="headerBtn"
-            value={formLoginValue}
-            onClick={formLogin}
+            onClick={openLoginForm}
+            style={bgIcon}
           >
             <img src={UserIcon} alt={UserIcon} className="icon searchIcon" />
           </button>

@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../components/header';
-import LoginForm from '../components/loginForm';
+import React, { useEffect } from 'react';
 
 function Home() {
-  const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
-
-  const handleLoginForm = () => {
-    setLoginFormIsOpen(true);
-  }
-
   useEffect(() => {
-    document.title = 'Febx - Let\'s share creativity';
+    document.title = 'Febx - Let\'s Share Creativity';
   }, []);
 
   return (
-    <React.Fragment>
-      <Header
-        formLogin={(event) => handleLoginForm(event)}
-        formLoginValue={loginFormIsOpen}
-      />
-      {
-        loginFormIsOpen ? <LoginForm /> : null
-      }
-    </React.Fragment>
+    <div className="home">
+      <div className="homeWrap">
+        <p>Hello World</p>
+      </div>
+    </div>
   );
 }
 
