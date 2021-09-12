@@ -11,7 +11,7 @@
     display: flex; justify-content: flex-start; align-items: center;
 
     .homeHeader {
-      width: 768px;
+      width: 690px;
       transform: translateY(-40px);
 
       .bullets {
@@ -30,7 +30,7 @@
         opacity: 0.8;
         
         span:nth-child(1) { color: #c9c4b5; }
-        span:nth-child(2) { z-index: 1; color: #92845e; }
+        span:nth-child(2) { z-index: 1; color: #867b5c; }
       }
     }
 
@@ -103,6 +103,19 @@
         .homeHeaderH1 {
           font-size: 4rem;
           line-height: 2.3rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 355px) {
+  .home {
+    .homeWrap {
+      .homeHeader {
+        .homeHeaderH1 {
+          font-size: 3.6rem;
+          line-height: 2.1rem;
         }
       }
     }
