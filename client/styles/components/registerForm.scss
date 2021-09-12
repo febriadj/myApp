@@ -41,3 +41,17 @@
     }
   }
 }
+
+@media screen and (max-width: 540px) {
+  .register {
+    height: 100%;
+    .registerWrap {
+      justify-content: center; align-items: flex-end;
+      
+      .registerForm {
+        width: 100%;
+        transform: translate(0);
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ $fontFamily: 'Urbanist', sans-serif;
     // Header 1 404
     .default404 {
       font-size: 9rem;
-      opacity: 0.5;
+      opacity: 0.8;
     }
     // Breaker Line (Garis Pemisah Antara H1 404 dengan Paragraf)
     .defaultBreakerLine {
@@ -44,10 +44,6 @@ $fontFamily: 'Urbanist', sans-serif;
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
-  }
-
   .default {
     .defaultWrap {
       flex-direction: column; align-items: flex-start;

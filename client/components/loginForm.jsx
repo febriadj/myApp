@@ -13,7 +13,7 @@ function LoginForm({ displayForm, closeLoginForm, openRegisterForm }) {
           >
           </button>
           <h2>Login to manage the content of this website.</h2>
-          <input type="text" name="nameOrEmail" className="input inputNameOrEmail" placeholder="Username" required />
+          <input type="text" name="nameOrEmail" className="input inputNameOrEmail" placeholder="Username or Email" required />
           <input type="password" name="password" className="input inputPassword" placeholder="Password" required />
           <button type="submit" className="submit">Login</button>
           <p className="ask">

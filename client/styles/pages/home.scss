@@ -1,0 +1,110 @@
+.home {
+  position: absolute;
+  width: 100%; height: 100%;
+  display: flex; justify-content: center;
+  overflow: hidden;
+
+  .homeWrap {
+    position: relative;
+    width: 1224px; height: 100%;
+    margin: 0 40px;
+    display: flex; justify-content: flex-start; align-items: center;
+
+    .homeHeader {
+      width: 768px;
+      transform: translateY(-40px);
+
+      .bullets {
+        position: absolute;
+        background: linear-gradient(45deg, #f3f0df, #fffef6, #fffef6, #f3f0df);
+        width: 400px; height: 400px;
+        transform: translateY(-50px);
+        border-radius: 50%;
+      }
+
+      // Home header H1 tag
+      .homeHeaderH1 {
+        font-size: 7rem;
+        line-height: 3.8rem;
+        margin: 40px 0 0 0;
+        opacity: 0.8;
+        
+        span:nth-child(1) { color: #c9c4b5; }
+        span:nth-child(2) { z-index: 1; color: #92845e; }
+      }
+    }
+
+    .homeFooter {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      
+      .homeFooterWrap {
+        display: flex; justify-content: space-between; align-items: flex-end;
+        padding: 0 0 20px 0;
+        font-size: 1rem;
+
+        // Contact pada footer halaman Home
+        .homeContact {
+          display: grid; grid-template-columns: 1fr; gap: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home {
+    .homeWrap {
+
+      .homeHeader {
+        width: 100%;
+
+        .bullets {
+          width: 350px; height: 350px;
+        }
+
+        .homeHeaderH1 {
+          font-size: 5rem;
+          line-height: 2.8rem;
+        }
+      }
+      
+      .homeTxt {
+        transform: translateY(0px);
+        text-align: left;
+        margin: 0;
+
+        p {
+          margin: 0 0 20px 0;
+        }
+      }
+
+      .homeFooter {
+        .homeFooterWrap {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .home {
+    .homeWrap {
+      margin: 0 20px;
+
+      .homeHeader {
+        .bullets {
+          width: 300px; height: 300px;
+          transform: translateY(-30px);
+        }
+
+        .homeHeaderH1 {
+          font-size: 4rem;
+          line-height: 2.3rem;
+        }
+      }
+    }
+  }
+}

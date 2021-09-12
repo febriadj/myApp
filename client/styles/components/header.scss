@@ -6,13 +6,14 @@
   .headerWrap {
     display: flex; justify-content: space-between; align-items: center;
     width: 1224px; height: 60px;
-    margin: 0 20px;
-    .headerLogoAndMenu {
+    margin: 0 40px;
+    .headerLogoAndLinks {
       display: flex; align-items: center;
       // Link Header Logo
       .headerLogo {
         text-decoration: none;
         color: #000;
+        font-size: 1.2rem;
       }
       // Breaker Line atau garis pemisah antara Logo dengan Menu
       .headerBreakerLine {
@@ -21,8 +22,8 @@
         background-color: #000;
         margin: 0 40px 0 20px;
       }
-      // Header Menu
-      .headerMenu {
+      // Header Links
+      .headerLinks {
         margin: 0 0 0 40px;
         display: flex; align-items: center;
         .link { margin: 0 5px 0 0; }
@@ -33,7 +34,7 @@
     }
     // Header Icons
     .headerIcons {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      display: flex; align-items: center;
       // Button Icon Header
       .headerBtn {
         cursor: pointer;
@@ -42,6 +43,8 @@
         display: flex; justify-content: center; align-items: center;
         border-radius: 50%;
         transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
+        margin: 0 0 0 10px;
+        
         .icon {
           width: 1.3rem;
         }
@@ -50,6 +53,61 @@
       .headerBtn:hover {
         background-color: #f3f0df;
       }
+    }
+
+    .headerMenuIcon {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    .headerWrap {
+      margin: 0 30px 0 40px;
+      display: grid; grid-template-columns: 0.5fr 1fr 1fr;
+
+      .headerLogoAndLinks {
+
+        .headerBreakerLine { height: 20px; margin: 0 20px; }
+        .headerLinks { display: none; }
+      }
+
+      .headerIcons {
+
+        .headerBtn {
+          width: 40px; height: 40px;
+          margin: 0 5px 0 0;
+
+          .icon { width: 1.1rem }
+        }
+      }
+      
+      .headerMenuIcon {
+        display: flex; justify-content: flex-end; align-items: center;
+        
+        .headerMenuIconBtn {
+          display: flex; justify-content: center; align-items: center;
+          width: 35px; height: 35px;
+          border-radius: 50%;
+
+          .line {
+            position: absolute;
+            display: block;
+            width: 20px; height: 1px;
+            background-color: #111;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .header {
+    .headerWrap {
+      margin: 0 10px 0 20px;
     }
   }
 }

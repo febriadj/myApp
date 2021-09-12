@@ -41,3 +41,17 @@
     }
   }
 }
+
+@media screen and (max-width: 540px) {
+  .login {
+    height: 100%;
+    .loginWrap {
+      justify-content: center; align-items: flex-end;
+      
+      .loginForm {
+        width: 100%;
+        transform: translate(0);
+      }
+    }
+  }
+}

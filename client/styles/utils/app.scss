@@ -6,6 +6,10 @@ $fontFamily: 'Urbanist', sans-serif;
   border: none; outline: none;
 }
 
+*::selection {
+  background-color: #ddd9c9de;
+}
+
 body {
   background-color: #fffef6;
   font-family: $fontFamily; font-size: 1.1rem;
@@ -32,4 +36,10 @@ input:-webkit-autofill {
   text-decoration: none;
   text-align: center;
   border-radius: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 1rem;
+  }
 }
