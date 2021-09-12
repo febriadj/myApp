@@ -29,6 +29,11 @@ input:-webkit-autofill {
   transition-delay: 9999s;
 }
 
+input:-webkit-autofill::first-line {
+  font-size: 1.1rem;
+  font-family: $fontFamily;
+}
+
 .link {
   padding: 2px 12px;
   color: #000;
