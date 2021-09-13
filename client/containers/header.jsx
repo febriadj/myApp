@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import '../styles/components/header.scss';
 import { Link } from 'react-router-dom';
-
 import UserIcon from '../assets/images/userIcon.png';
 import SearchIcon from '../assets/images/searchIcon.png';
+import '../styles/components/header.scss';
 
-import HeaderMenu from './headerMenu';
+import MenuHeader from '../components/header/menu.header';
 
 function Header({ openLoginForm, bgIcon }) {
   // State untuk menu icon header
@@ -71,7 +70,7 @@ function Header({ openLoginForm, bgIcon }) {
         </div>
       </div>
 
-      <HeaderMenu
+      <MenuHeader
         styles={menuIconIsOpen ? { transform: 'translateX(0)' } : null}
       />
     </React.Fragment>

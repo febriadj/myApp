@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function HeaderMenu({ styles }) {
+function MenuHeader({ styles }) {
   return (
     <div className="headerMenu" style={styles}>
       <div className="headerMenuWrap">
@@ -15,4 +15,4 @@ function HeaderMenu({ styles }) {
   )
 }
 
-export default HeaderMenu;
+export default MenuHeader;
