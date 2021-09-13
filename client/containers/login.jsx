@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/loginForm.scss';
+import '../styles/containers/login.scss';
 
 function LoginForm({ displayForm, closeLoginForm, openRegisterForm }) {
   return (

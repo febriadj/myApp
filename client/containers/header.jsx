@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserIcon from '../assets/images/userIcon.png';
 import SearchIcon from '../assets/images/searchIcon.png';
-import '../styles/components/header.scss';
+import '../styles/containers/header.scss';
 
 import MenuHeader from '../components/header/menu.header';
 

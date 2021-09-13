@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/components/registerForm.scss';
+import '../styles/containers/register.scss';
+// Import Komponen
 import FormRegister from '../components/register/form.register';
 import VerifRegister from '../components/register/verif.register';
 
@@ -31,7 +32,10 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
 
   const Components = () => {
     if ('code' in regisSession) {
-      return <VerifRegister closeRegisterForm={closeRegisterForm} />
+      return <VerifRegister
+        closeRegisterForm={closeRegisterForm}
+        openLoginForm={openLoginForm}
+      />
     }
 
     return <FormRegister
