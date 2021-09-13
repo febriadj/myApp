@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 
 function FormRegister({ closeRegisterForm, openLoginForm }) {
+  // State notifikasi saat pengguna submit formulir
+  const [notif, setNotif] = useState({
+    status: null,
+    message: '',
+  });
+
   // State formulir pendaftaran
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
-    permissionCode: '',
   });
 
   const handleChange = (event) => {
@@ -41,15 +46,57 @@ function FormRegister({ closeRegisterForm, openLoginForm }) {
         permissionCode: '',
       }));
 
-      console.log(request);
+      if (request.status === 'failed') {
+        const newErr = {
+          message: request.message,
+        }
+        throw newErr;
+      }
+
+      setNotif((prev) => ({
+        ...prev,
+        status: true,
+        message: 'Your account has been successfully created, please complete the next step',
+      }));
     }
     catch (error0) {
-      console.error(error0);
+      const { message } = error0;
+
+      setNotif((prev) => ({
+        ...prev, status: false, message,
+      }));
+
+      console.error(message);
     }
+  }
+
+  const NotifComponent = () => {
+    if (notif.status === null) return null;
+
+    const closeNotif = () => {
+      setNotif((prev) => ({
+        ...prev, status: null, message: '',
+      }));
+    }
+
+    return (
+      <div className="notif">
+        <div className="notifWrap">
+          <p>{notif.message}</p>
+
+          {
+            notif.status === true
+              ? <button type="button" onClick={() => closeNotif()}>Next Step</button>
+              : <button type="submit" onClick={() => closeNotif()}>Re-Registrasion</button>
+          }
+        </div>
+      </div>
+    )
   }
 
   return (
     <form method="post" className="registerForm" onSubmit={handleSubmit}>
+      <NotifComponent />
       <button
         type="button"
         className="fas fa-times closeBtn"
@@ -82,15 +129,6 @@ function FormRegister({ closeRegisterForm, openLoginForm }) {
         placeholder="Password"
         required
         value={formData.password}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="permissionCode"
-        className="input inputPermissionCode"
-        placeholder="Permission Code"
-        required
-        value={formData.permissionCode}
         onChange={handleChange}
       />
       <button type="submit" className="submit">Register</button>
