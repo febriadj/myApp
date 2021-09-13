@@ -1,0 +1,183 @@
+.header {
+  position: fixed;
+  width: 100%;
+  display: flex; justify-content: center;
+  z-index: 9;
+  .headerWrap {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 1224px; height: 60px;
+    margin: 0 30px 0 40px;
+    .headerLogoAndLinks {
+      display: flex; align-items: center;
+      // Link Header Logo
+      .headerLogo {
+        text-decoration: none;
+        color: #000;
+        font-size: 1.2rem;
+      }
+      // Breaker Line atau garis pemisah antara Logo dengan Menu
+      .headerBreakerLine {
+        display: block;
+        width: 1px; height: 25px;
+        background-color: #000;
+        margin: 0 20px;
+      }
+      // Header Links
+      .headerLinks {
+        margin: 0 0 0 40px;
+        display: flex; align-items: center;
+        .link { margin: 0 5px 0 0; }
+        .link:hover {
+          background-color: #f3f0df;
+        }
+      }
+    }
+    // Header Icons
+    .headerIcons {
+      display: flex; align-items: center;
+      // Button Icon Header
+      .headerBtn {
+        cursor: pointer;
+        background-color: transparent;
+        width: 40px; height: 40px;
+        display: flex; justify-content: center; align-items: center;
+        border-radius: 50%;
+        transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
+        margin: 0 0 0 10px;
+        
+        .icon {
+          width: 1.3rem;
+        }
+      }
+      // Button Icon Header saat di Hover
+      .headerBtn:hover {
+        background-color: #f3f0df;
+      }
+    }
+
+    .headerMenuIcon {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header {
+    .headerWrap {
+      margin: 0 30px 0 40px;
+      display: grid; grid-template-columns: 0.5fr 1fr 1fr;
+
+      .headerLogoAndLinks {
+
+        .headerBreakerLine { height: 20px; margin: 0 20px; }
+        .headerLinks { display: none; }
+      }
+
+      .headerIcons {
+
+        .headerBtn {
+          width: 40px; height: 40px;
+          margin: 0 5px 0 0;
+
+          .icon { width: 1.1rem }
+        }
+      }
+      
+      .headerMenuIcon {
+        display: flex; justify-content: flex-end; align-items: center;
+        
+        .headerMenuIconBtn {
+          display: flex; justify-content: center; align-items: center;
+          width: 35px; height: 35px;
+          border-radius: 50%;
+
+          .line {
+            position: absolute;
+            display: block;
+            width: 20px; height: 1px;
+            background-color: #111;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+            opacity: 1;
+          }
+
+          .line-1 {
+            transform: translateY(-6px);
+          }
+    
+          .line-4 {
+            transform: translateY(6px);
+          }
+        }
+      }
+    }
+  }
+}
+
+.headerMenu {
+  position: fixed;
+  width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+  z-index: 8;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  transform: translateX(100%);
+  
+  .headerMenuWrap {
+    width: 100%; height: 100%;
+    background-color: #f3f0df;
+    padding: 20px;
+    margin: 0 0 0 70px;
+    display: grid; grid-template-columns: auto 1fr; gap: 20px;
+    align-items: center;
+
+    .headerMenuLinks {
+      display: flex; flex-direction: column; align-items: flex-start;
+      width: 180px;
+
+      .link {
+        border-radius: 0;
+        font-size: 1.2rem;
+        display: grid; grid-template-columns: 1fr; gap: 20px;
+        margin: 10px 0 10px 20px;
+        padding: 0 0 10px 0;
+        border-bottom: 1px solid transparent;
+        text-transform: uppercase;
+
+        h3 {
+          font-size: 2.5rem;
+          color: #ddd9c9;
+          margin: 0 10px 0 0;
+          opacity: 0.5;
+          position: absolute;
+          transform: translate(-20px, -10px);
+        }
+        p {
+          z-index: 1;
+          transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+        }
+      }
+
+      .link:hover {
+        border-bottom: 1px solid #b3b1a5;
+
+        p {
+          transform: translateX(40px);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .header {
+    .headerWrap {
+      margin: 0 10px 0 20px;
+    }
+  }
+
+  .headerMenu {
+
+    .headerMenuWrap {
+      margin: 0 0 0 50px;
+    }
+  }
+}
