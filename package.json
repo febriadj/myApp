@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "personal website application",
   "main": "server/index.js",
+  "proxy": "localhost:8000",
+  "engines": {
+    "node": "14.16.0"
+  },
   "scripts": {
     "test": "jest --watchAll",
     "server-start": "node server/index.js",
     "server-dev": "nodemon server/index.js",
+    "client-start": "webpack --mode=development",
     "client-dev": "webpack serve --mode=development --config ./webpack.config.js --open",
     "build": "webpack --mode=production",
     "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\""
@@ -48,10 +53,12 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^6.2.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.5",
     "nodemailer": "^6.6.3",
