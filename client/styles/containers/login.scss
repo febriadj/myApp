@@ -9,12 +9,13 @@
     display: flex; justify-content: flex-end; align-items: flex-start;
 
     .loginForm {
-      position: relative;
+      position: fixed;
       width: 400px;
       background-color: #f3f0df;
       display: grid; grid-template-columns: 1fr; gap: 20px;
       padding: 20px;
       transform: translate(-40px, 70px);
+
       // Button untuk menutup tab formulir
       .closeBtn {
         position: absolute;
@@ -39,9 +40,9 @@
 
           button {
             margin: 15px 0 0 0;
-            background-color: #ddd9c9;
-            padding: 2px 10px;
-            border-radius: 2rem;
+            background: linear-gradient(transparent, transparent, #ddd9c9);
+            border-bottom: 1px solid #b3b1a5;
+            padding: 2px 0;
             cursor: pointer;
           }
           button:hover {
@@ -75,6 +76,7 @@
       justify-content: center; align-items: flex-end;
       
       .loginForm {
+        position: relative;
         width: 100%;
         transform: translate(0);
       }
