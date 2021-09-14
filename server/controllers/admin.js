@@ -18,6 +18,32 @@ exports.AdminRegister = async (req, res) => {
     const randomCode = Math.floor(1000 + Math.random() * 9000);
     req.body.regisCode = randomCode;
 
+    if (!/^[a-z0-9-_]{5,16}$/g.test(req.body.username)) {
+      const newErr = {
+        message: 'Invalid Username. You can use a-z, 0-9 and hyphens. 5-16 characters long',
+      }
+      throw newErr;
+    }
+
+    const AdminExists = await AdminModel.findOne({
+      $or: [
+        {
+          username: {
+            $regex: new RegExp(req.body.username),
+            $options: 'i',
+          },
+        },
+        { email: req.body.email },
+      ],
+    });
+    // Kondisi saat identitas pengguna sudah dipakai
+    if (AdminExists) {
+      const newErr = {
+        message: 'Opss. Username or Email already used by someone else',
+      }
+      throw newErr;
+    }
+
     // Inisialisasi Transporter Nodemailer
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -43,8 +69,10 @@ exports.AdminRegister = async (req, res) => {
     });
   }
   catch (error0) {
+    const { message } = error0;
+
     res.status(200).json({
-      status: 'success', message: error0,
+      status: 'failed', message,
     });
   }
 }
@@ -55,12 +83,22 @@ exports.AccAdminRegister = async (req, res) => {
     const { username, email, password } = req.session.regisData;
     const { clientRegisCode } = req.body;
 
+    // Kondisi saat registrasi code tidak sesuai
     if (req.session.regisData.regisCode !== clientRegisCode) {
       const newErr = {
-        message: 'your registration code is wrong',
+        message: 'Your registration code is wrong',
       }
       throw newErr;
     }
+
+    // Kondisi saat permission code tidak sesuai
+    if (req.body.permissionCode !== process.env.REGIS_PERMISS_CODE) {
+      const newErr = {
+        message: 'Permission code does not match',
+      }
+      throw newErr;
+    }
+
     // Jika berhasil, hapus properti regisData pada Object session
     delete req.session.regisData;
 
@@ -72,6 +110,7 @@ exports.AccAdminRegister = async (req, res) => {
     });
 
     const data = await Admin.save();
+
     res.status(200).json({
       status: 'success', data,
     });
@@ -89,15 +128,15 @@ exports.AdminLogin = async (req, res) => {
   try {
     const data = await AdminModel.findOne({
       $or: [
-        { username: req.body.nameOrEmail },
-        { email: req.body.nameOrEmail },
+        { nameOrEmail: req.body.nameOrEmail },
+        { password: req.body.password },
       ],
     });
 
     // Kondisi jika username atau email user tidak ditemukan
     if (!data) {
       const newErr = {
-        message: 'user not found',
+        message: 'I can\'t find a suitable user, please double check your Username or Email',
       }
       throw newErr;
     }
@@ -105,7 +144,7 @@ exports.AdminLogin = async (req, res) => {
     // Membandingkan Password
     if (!bcrypt.compareSync(req.body.password, data.password)) {
       const newErr = {
-        message: 'password does not match',
+        message: 'User password does not match',
       }
       throw newErr;
     }
