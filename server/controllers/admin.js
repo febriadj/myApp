@@ -84,7 +84,7 @@ exports.AccAdminRegister = async (req, res) => {
     const { clientRegisCode } = req.body;
 
     // Kondisi saat registrasi code tidak sesuai
-    if (req.session.regisData.regisCode !== clientRegisCode) {
+    if (req.session.regisData.regisCode !== Number(clientRegisCode)) {
       const newErr = {
         message: 'Your registration code is wrong',
       }
@@ -99,9 +99,6 @@ exports.AccAdminRegister = async (req, res) => {
       throw newErr;
     }
 
-    // Jika berhasil, hapus properti regisData pada Object session
-    delete req.session.regisData;
-
     const Admin = new AdminModel({
       username,
       email,
@@ -110,6 +107,8 @@ exports.AccAdminRegister = async (req, res) => {
     });
 
     const data = await Admin.save();
+    // Jika berhasil, hapus properti regisData pada Object session
+    delete req.session.regisData;
 
     res.status(200).json({
       status: 'success', data,
