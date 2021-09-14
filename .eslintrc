@@ -30,6 +30,7 @@
         "react/no-unescaped-entities": "off",
         "react/jsx-fragments": "off",
         "react/jsx-one-expression-per-line": "off",
-        "react/self-closing-comp": "off"
+        "react/self-closing-comp": "off",
+        "react/jsx-wrap-multilines": "off"
     }
 }
