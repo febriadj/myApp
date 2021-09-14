@@ -14,7 +14,7 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
       // Cek apakah ada properti regisData didalam Session
       if ('regisData' in request.data === false) {
         const newErr = {
-          message: 'regisData property not found',
+          message: 'Error detected while sending request to session',
         }
         throw newErr;
       }
@@ -22,7 +22,7 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
       const { username, email, password } = request.data.regisData;
       // Memasukkan data registrasi dari Session kedalam state
       setRegisSession((prev) => ({
-        ...prev, username, email, password, code: request.data.regisData.code,
+        ...prev, username, email, password, code: request.data.regisData.regisCode,
       }));
     }
     catch (error0) {
@@ -31,20 +31,24 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
   }
 
   const Components = () => {
-    if ('code' in regisSession) {
-      return <VerifRegister
+    if ('code' in regisSession === false) {
+      return <FormRegister
         closeRegisterForm={closeRegisterForm}
         openLoginForm={openLoginForm}
+        handleRegisSession={handleRegisSession}
       />
     }
 
-    return <FormRegister
+    return <VerifRegister
       closeRegisterForm={closeRegisterForm}
       openLoginForm={openLoginForm}
+      handleRegisSession={handleRegisSession}
     />
   }
 
-  useEffect(() => handleRegisSession(), []);
+  useEffect(() => {
+    handleRegisSession();
+  }, []);
 
   return (
     <div className="register" style={displayForm}>

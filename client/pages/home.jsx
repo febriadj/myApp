@@ -10,7 +10,6 @@ function Home() {
     <div className="home">
       <div className="homeWrap">
         <div className="homeHeader">
-          <span className="bullets"></span>
           <h1 className="homeHeaderH1">Live life with <span>Logic</span> and <span>Creativity</span>.</h1>
         </div>
         <div className="homeFooter">

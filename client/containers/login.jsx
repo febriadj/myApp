@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/containers/login.scss';
 
-function Login({ displayForm, closeLoginForm, openRegisterForm }) {
+function Login({
+  handleTokenSession,
+  closeLoginForm,
+  displayForm,
+  openRegisterForm,
+}) {
   const [notif, setNotif] = useState({
     status: null,
     message: '',
@@ -65,6 +70,8 @@ function Login({ displayForm, closeLoginForm, openRegisterForm }) {
       setNotif((prev) => ({
         ...prev, status: null, message: '',
       }));
+
+      return handleTokenSession();
     }
 
     return (
@@ -79,8 +86,10 @@ function Login({ displayForm, closeLoginForm, openRegisterForm }) {
           }
         </div>
       </div>
-    )
+    );
   }
+
+  useEffect(() => handleTokenSession(), []);
 
   return (
     <div className="login" style={displayForm}>

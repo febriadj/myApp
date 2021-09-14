@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function FormRegister({ closeRegisterForm, openLoginForm }) {
+function FormRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) {
   // State notifikasi saat pengguna submit formulir
   const [notif, setNotif] = useState({
     status: null,
@@ -34,7 +34,6 @@ function FormRegister({ closeRegisterForm, openLoginForm }) {
           username: formData.username,
           email: formData.email,
           password: formData.password,
-          permissionCode: formData.permissionCode,
         }),
       })).json();
 
@@ -77,6 +76,8 @@ function FormRegister({ closeRegisterForm, openLoginForm }) {
       setNotif((prev) => ({
         ...prev, status: null, message: '',
       }));
+
+      return handleRegisSession();
     }
 
     return (

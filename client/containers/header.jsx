@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/containers/header.scss';
+
 import UserIcon from '../assets/images/userIcon.png';
 import SearchIcon from '../assets/images/searchIcon.png';
-import '../styles/containers/header.scss';
 
 import MenuHeader from '../components/header/menu.header';
 import Login from './login';
 import Register from './register';
 
 function Header() {
-  // State untuk menu icon header
+  // State token admin pada Session
+  const [tokenInSession, setTokenInSession] = useState(null);
+
   const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
   const [registerFormIsOpen, setRegisterFormIsOpen] = useState(false);
+  // State untuk menu icon header
   const [menuIconIsOpen, setMenuIconIsOpen] = useState(false);
 
   // Handle buka & tutup formulir login
@@ -32,6 +36,24 @@ function Header() {
     }
 
     return setMenuIconIsOpen(false);
+  }
+
+  const handleTokenSession = async () => {
+    try {
+      const request = await (await fetch('http://localhost:8000/api/admin/session')).json();
+      // Cek apakah ada properti regisData didalam Session
+      if ('regisData' in request.data === false) {
+        const newErr = {
+          message: 'Error detected while sending request to session',
+        }
+        throw newErr;
+      }
+      // Memasukkan token dari Session kedalam state
+      setTokenInSession(request.data.admin);
+    }
+    catch (error0) {
+      console.error(error0.message);
+    }
   }
 
   const menuIconBtnIsOpen = () => {
@@ -62,7 +84,31 @@ function Header() {
     return true;
   }
 
-  useEffect(() => menuIconBtnIsOpen());
+  const ProfileIconComponents = () => {
+    if (!tokenInSession) {
+      return (
+        <button
+          className="headerBtn"
+          type="button"
+          style={registerFormIsOpen || loginFormIsOpen ? { backgroundColor: '#f3f0df' } : null}
+          onClick={handleOpenLoginForm}
+        >
+          <img src={UserIcon} alt={UserIcon} className="icon profileIcon" />
+        </button>
+      );
+    }
+
+    return (
+      <Link to="/dashboard" className="headerBtn">
+        <img src={UserIcon} alt={UserIcon} className="icon profileIcon" />
+        <span className="profileActive"></span>
+      </Link>
+    );
+  }
+
+  useEffect(() => {
+    menuIconBtnIsOpen();
+  });
 
   return (
     <React.Fragment>
@@ -78,15 +124,8 @@ function Header() {
             </div>
           </div>
           <div className="headerIcons">
-            <button type="button" className="headerBtn"><img src={SearchIcon} alt={SearchIcon} className="icon userIcon" /></button>
-            <button
-              type="button"
-              className="headerBtn"
-              onClick={handleOpenLoginForm}
-              style={registerFormIsOpen || loginFormIsOpen ? { backgroundColor: '#f3f0df' } : null}
-            >
-              <img src={UserIcon} alt={UserIcon} className="icon searchIcon" />
-            </button>
+            <button type="button" className="headerBtn"><img src={SearchIcon} alt={SearchIcon} className="icon searchIcon" /></button>
+            <ProfileIconComponents />
           </div>
           <div className="headerMenuIcon">
             <button type="button" className="headerMenuIconBtn" onClick={handleOpenMenuIcon}>
@@ -106,6 +145,7 @@ function Header() {
         openRegisterForm={() => handleOpenRegisterForm()}
         closeLoginForm={() => setLoginFormIsOpen(false)}
         displayForm={loginFormIsOpen ? { opacity: 1, zIndex: 8 } : { opacity: 0, zIndex: -8 }}
+        handleTokenSession={handleTokenSession}
       />
       <Register
         closeRegisterForm={() => setRegisterFormIsOpen(false)}

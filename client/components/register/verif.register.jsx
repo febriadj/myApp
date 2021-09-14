@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function VerifRegister({ closeRegisterForm, openLoginForm }) {
+export default function VerifRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) {
   // State notifikasi saat pengguna submit formulir
   const [notif, setNotif] = useState({
     status: null,
@@ -30,6 +30,7 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm }) {
         },
         body: JSON.stringify({
           clientRegisCode: formData.clientRegisCode,
+          permissionCode: formData.permissionCode,
         }),
       })).json();
 
@@ -47,7 +48,7 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm }) {
       setNotif((prev) => ({
         ...prev,
         status: true,
-        message: 'you have completed registration, now you can login with that account.',
+        message: 'You have completed registration, now you can login with that account.',
       }));
     }
     catch (error0) {
@@ -68,6 +69,8 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm }) {
       setNotif((prev) => ({
         ...prev, status: null, message: '',
       }));
+
+      return handleRegisSession();
     }
 
     return (
@@ -82,7 +85,7 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm }) {
           }
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -115,9 +118,8 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm }) {
       />
       <button type="submit" className="submit">Register</button>
       <p className="ask">
-        I have sent your registration code by email,
-        please check your email again. Then for the permission code
-        please report it personally with the owner of this website
+        I have sent your registration code by email, then for the permission code
+        you must get permission from the owner of this website
       </p>
     </form>
   );
