@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const dotenv = require('dotenv');
@@ -26,4 +27,13 @@ app.use(session({
 }));
 
 app.use('/api', routes);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+  });
+}
+
 module.exports = app;
