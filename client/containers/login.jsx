@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/containers/login.scss';
 
 function Login({
-  handleTokenSession,
+  handleTokenInSession,
+  tokenInSession,
   closeLoginForm,
   displayForm,
   openRegisterForm,
@@ -53,6 +54,8 @@ function Login({
         status: true,
         message: 'You have successfully logged in, I will redirect you to the Dashboard page',
       }));
+
+      handleTokenInSession();
     }
     catch (error0) {
       const { message } = error0;
@@ -71,7 +74,7 @@ function Login({
         ...prev, status: null, message: '',
       }));
 
-      return handleTokenSession();
+      if (tokenInSession) closeLoginForm();
     }
 
     return (
@@ -81,15 +84,13 @@ function Login({
 
           {
             notif.status === true
-              ? <button type="button" onClick={() => closeNotif()}>Next Step</button>
-              : <button type="submit" onClick={() => closeNotif()}>Re-Registrasion</button>
+              ? <button type="button" onClick={() => closeNotif()}>Close</button>
+              : <button type="button" onClick={() => closeNotif()}>Re-Enter</button>
           }
         </div>
       </div>
     );
   }
-
-  useEffect(() => handleTokenSession(), []);
 
   return (
     <div className="login" style={displayForm}>

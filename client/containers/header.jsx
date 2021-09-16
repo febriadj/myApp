@@ -8,15 +8,14 @@ import SearchIcon from '../assets/images/searchIcon.png';
 import MenuHeader from '../components/header/menu.header';
 import Login from './login';
 import Register from './register';
+import IconActiveTab from '../components/header/iconActiveTab.header';
 
-function Header() {
-  // State token admin pada Session
-  const [tokenInSession, setTokenInSession] = useState(null);
-
+function Header({ tokenInSession, handleTokenInSession }) {
   const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
   const [registerFormIsOpen, setRegisterFormIsOpen] = useState(false);
   // State untuk menu icon header
   const [menuIconIsOpen, setMenuIconIsOpen] = useState(false);
+  const [iconActiveTab, setIconActiveTab] = useState(false);
 
   // Handle buka & tutup formulir login
   const handleOpenLoginForm = () => {
@@ -29,6 +28,10 @@ function Header() {
     setRegisterFormIsOpen(true);
   }
 
+  const handleCloseLoginForm = () => {
+    setLoginFormIsOpen(false);
+  }
+
   const handleOpenMenuIcon = () => {
     // Kondisi jika menu icon dalam keadaan tertutup
     if (!menuIconIsOpen) {
@@ -36,24 +39,6 @@ function Header() {
     }
 
     return setMenuIconIsOpen(false);
-  }
-
-  const handleTokenSession = async () => {
-    try {
-      const request = await (await fetch('http://localhost:8000/api/admin/session')).json();
-      // Cek apakah ada properti regisData didalam Session
-      if ('regisData' in request.data === false) {
-        const newErr = {
-          message: 'Error detected while sending request to session',
-        }
-        throw newErr;
-      }
-      // Memasukkan token dari Session kedalam state
-      setTokenInSession(request.data.admin);
-    }
-    catch (error0) {
-      console.error(error0.message);
-    }
   }
 
   const menuIconBtnIsOpen = () => {
@@ -84,8 +69,16 @@ function Header() {
     return true;
   }
 
+  const openIconActiveTab = () => {
+    if (iconActiveTab) {
+      return setIconActiveTab(false);
+    }
+
+    return setIconActiveTab(true);
+  }
+
   const ProfileIconComponents = () => {
-    if (!tokenInSession) {
+    if (tokenInSession) {
       return (
         <button
           className="headerBtn"
@@ -99,16 +92,19 @@ function Header() {
     }
 
     return (
-      <Link to="/dashboard" className="headerBtn">
+      <button
+        className="headerBtn"
+        type="button"
+        style={iconActiveTab ? { backgroundColor: '#f3f0df' } : null}
+        onClick={openIconActiveTab}
+      >
         <img src={UserIcon} alt={UserIcon} className="icon profileIcon" />
         <span className="profileActive"></span>
-      </Link>
+      </button>
     );
   }
 
-  useEffect(() => {
-    menuIconBtnIsOpen();
-  });
+  useEffect(() => menuIconBtnIsOpen());
 
   return (
     <React.Fragment>
@@ -143,14 +139,18 @@ function Header() {
       />
       <Login
         openRegisterForm={() => handleOpenRegisterForm()}
-        closeLoginForm={() => setLoginFormIsOpen(false)}
+        closeLoginForm={handleCloseLoginForm}
         displayForm={loginFormIsOpen ? { opacity: 1, zIndex: 8 } : { opacity: 0, zIndex: -8 }}
-        handleTokenSession={handleTokenSession}
+        handleTokenInSession={() => handleTokenInSession()}
+        tokenInSession={tokenInSession}
       />
       <Register
         closeRegisterForm={() => setRegisterFormIsOpen(false)}
         openLoginForm={() => handleOpenLoginForm()}
         displayForm={registerFormIsOpen ? { opacity: 1, zIndex: 8 } : { opacity: 0, zIndex: -8 }}
+      />
+      <IconActiveTab
+        styles={iconActiveTab === true ? { zIndex: 8, opacity: 1 } : { zIndex: -8, opacity: 0 }}
       />
     </React.Fragment>
   );
