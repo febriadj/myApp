@@ -18,7 +18,7 @@ const {
 } = require('../controllers/articles');
 
 router.get('/admin', authenticate, AdminDataInSession);
-router.get('/admin/token', AdminTokenInSession);
+router.get('/admin/session', AdminTokenInSession);
 router.post('/admin/register', AdminRegister);
 router.post('/admin/register/accept', AccAdminRegister);
 router.post('/admin/login', AdminLogin);
