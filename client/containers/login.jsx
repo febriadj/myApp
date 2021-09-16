@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../styles/containers/login.scss';
 
 function Login({
@@ -8,6 +9,7 @@ function Login({
   displayForm,
   openRegisterForm,
 }) {
+  const history = useHistory();
   const [notif, setNotif] = useState({ status: null, message: '' });
 
   const [formData, setFormData] = useState({
@@ -70,7 +72,12 @@ function Login({
         ...prev, status: null, message: '',
       }));
 
-      if (isLoggedIn) closeLoginForm();
+      // Kondisi jika sudah berhasil login
+      if (isLoggedIn.status) {
+        closeLoginForm();
+        // Pindah ke halaman Dashboard
+        history.push('/dashboard');
+      }
     }
 
     return (

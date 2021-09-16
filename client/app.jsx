@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
 } from 'react-router-dom'
@@ -37,7 +36,6 @@ export default function App() {
 
     // Memasukkan token kedalam Object data admin
     requestAdmin.data.token = requestToken.data.admin;
-    console.log(requestAdmin.data);
 
     return setIsLoggedIn((prev) => ({
       ...prev, status: 'success', data: requestAdmin.data,
@@ -52,7 +50,7 @@ export default function App() {
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard">{isLoggedIn.status ? <Dashboard isLoggedIn={isLoggedIn} /> : <Redirect to="/" />}</Route>
+        <Route exact path="/dashboard" component={isLoggedIn.status ? Dashboard : Default} />
         <Route component={Default} />
       </Switch>
     </Router>
