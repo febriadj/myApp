@@ -3,7 +3,6 @@ const { Schema, model } = require('mongoose');
 const ArticleSchema = new Schema({
   author: {
     type: Schema.Types.String,
-    unique: true,
     required: true,
   },
   title: {
