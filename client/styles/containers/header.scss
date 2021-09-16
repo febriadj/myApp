@@ -69,6 +69,53 @@
   }
 }
 
+.iconActiveTab {
+  position: fixed;
+  width: 100%;
+  display: flex; justify-content: center;
+  background-color: #f3f0df;
+  transform: translateY(-100%);
+  z-index: -8;
+  opacity: 0;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+
+  .iconActiveTabWrap {
+    width: 1224px;
+    display: flex; justify-content: flex-end;
+    margin: 60px 40px 0 0;
+    
+    .iconActiveTabBody {
+      transform: translateY(60px);
+      position: fixed;
+      background-color: #f3f0df;
+      padding: 20px;
+      display: flex; flex-direction: column; align-items: flex-start;
+
+
+      .link {
+        padding: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #b3b1a5;
+        background-color: #eee9d6;
+        padding: 4px 10px;
+        margin: 0 0 10px 0;
+        cursor: pointer;
+      }
+      button {
+        margin: 30px 0 0 0;
+        border-bottom: 1px solid #b3b1a5;
+        background-color: #eee9d6;
+        padding: 4px 10px;
+        cursor: pointer;
+      }
+
+      .link:hover, button:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 640px) {
   .header {
     .headerWrap {

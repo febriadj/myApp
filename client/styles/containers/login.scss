@@ -40,13 +40,12 @@
 
           button {
             margin: 15px 0 0 0;
-            background: linear-gradient(transparent, transparent, #ddd9c9);
             border-bottom: 1px solid #b3b1a5;
             padding: 2px 0;
             cursor: pointer;
           }
           button:hover {
-            filter: brightness(0.95);
+            opacity: 0.7;
           }
         }
       }
