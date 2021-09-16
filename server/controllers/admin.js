@@ -127,8 +127,8 @@ exports.AdminLogin = async (req, res) => {
   try {
     const data = await AdminModel.findOne({
       $or: [
-        { nameOrEmail: req.body.nameOrEmail },
-        { password: req.body.password },
+        { username: req.body.nameOrEmail },
+        { email: req.body.nameOrEmail },
       ],
     });
 
