@@ -2,7 +2,8 @@ const router = require('express').Router();
 const authenticate = require('../middleware/auth');
 
 const {
-  AdminSession,
+  AdminDataInSession,
+  AdminTokenInSession,
   AdminRegister,
   AccAdminRegister,
   AdminLogin,
@@ -16,7 +17,8 @@ const {
   DeleteArticle,
 } = require('../controllers/articles');
 
-router.get('/admin/session', AdminSession);
+router.get('/admin', authenticate, AdminDataInSession);
+router.get('/admin/token', AdminTokenInSession);
 router.post('/admin/register', AdminRegister);
 router.post('/admin/register/accept', AccAdminRegister);
 router.post('/admin/login', AdminLogin);

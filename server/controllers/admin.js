@@ -4,7 +4,24 @@ const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const AdminModel = require('../models/admin.model');
 
-exports.AdminSession = (req, res) => {
+exports.AdminDataInSession = async (req, res) => {
+  try {
+    const data = await AdminModel.findOne({ _id: req.admin.id });
+
+    res.status(200).json({
+      status: 'success', data,
+    });
+  }
+  catch (error0) {
+    const { message } = error0;
+
+    res.status(400).json({
+      status: 'failed', message,
+    });
+  }
+}
+
+exports.AdminTokenInSession = (req, res) => {
   res.status(200).json({
     status: 'success',
     // Mengirim data session ke client
