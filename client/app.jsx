@@ -8,34 +8,51 @@ import {
 
 import './styles/utils/app.scss';
 
+import Header from './containers/header';
+
 import Default from './pages/default';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 
-import Header from './containers/header';
-
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState({
+    status: false, data: null,
+  });
 
-  const handleSession = async () => {
-    const request = await (await fetch('http://localhost:8000/api/admin/session')).json();
+  const handleIsLoggedIn = async () => {
+    const requestToken = await (await fetch('http://localhost:8000/api/admin/session')).json();
 
-    if ('admin' in request.data === false) {
-      return setIsLoggedIn(false);
+    if ('admin' in requestToken.data === false) {
+      return setIsLoggedIn((prev) => ({
+        ...prev, status: false, data: null,
+      }));
     }
 
-    return setIsLoggedIn(true);
+    const requestAdmin = await (await fetch('http://localhost:8000/api/admin', {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${requestToken.data.admin}`,
+      },
+    })).json();
+
+    // Memasukkan token kedalam Object data admin
+    requestAdmin.data.token = requestToken.data.admin;
+    console.log(requestAdmin.data);
+
+    return setIsLoggedIn((prev) => ({
+      ...prev, status: 'success', data: requestAdmin.data,
+    }));
   }
 
-  useEffect(() => handleSession());
+  useEffect(() => handleIsLoggedIn(), []);
 
   return (
     <Router>
-      <Header tokenInSession={isLoggedIn} handleTokenInSession={handleSession} />
+      <Header isLoggedIn={isLoggedIn} handleIsLoggedIn={handleIsLoggedIn} />
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard">{isLoggedIn ? <Dashboard /> : <Redirect to="/" />}</Route>
+        <Route exact path="/dashboard">{isLoggedIn.status ? <Dashboard isLoggedIn={isLoggedIn} /> : <Redirect to="/" />}</Route>
         <Route component={Default} />
       </Switch>
     </Router>

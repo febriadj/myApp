@@ -2,20 +2,16 @@ import React, { useState } from 'react';
 import '../styles/containers/login.scss';
 
 function Login({
-  handleTokenInSession,
-  tokenInSession,
+  handleIsLoggedIn,
+  isLoggedIn,
   closeLoginForm,
   displayForm,
   openRegisterForm,
 }) {
-  const [notif, setNotif] = useState({
-    status: null,
-    message: '',
-  });
+  const [notif, setNotif] = useState({ status: null, message: '' });
 
   const [formData, setFormData] = useState({
-    nameOrEmail: '',
-    password: '',
+    nameOrEmail: '', password: '',
   });
 
   const handleChange = (event) => {
@@ -55,7 +51,7 @@ function Login({
         message: 'You have successfully logged in, I will redirect you to the Dashboard page',
       }));
 
-      handleTokenInSession();
+      handleIsLoggedIn();
     }
     catch (error0) {
       const { message } = error0;
@@ -74,7 +70,7 @@ function Login({
         ...prev, status: null, message: '',
       }));
 
-      if (tokenInSession) closeLoginForm();
+      if (isLoggedIn) closeLoginForm();
     }
 
     return (

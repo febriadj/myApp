@@ -10,7 +10,7 @@ import Login from './login';
 import Register from './register';
 import IconActiveTab from '../components/header/iconActiveTab.header';
 
-function Header({ tokenInSession, handleTokenInSession }) {
+function Header({ isLoggedIn, handleIsLoggedIn }) {
   const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
   const [registerFormIsOpen, setRegisterFormIsOpen] = useState(false);
   // State untuk menu icon header
@@ -78,7 +78,7 @@ function Header({ tokenInSession, handleTokenInSession }) {
   }
 
   const ProfileIconComponents = () => {
-    if (tokenInSession) {
+    if (!isLoggedIn.status) {
       return (
         <button
           className="headerBtn"
@@ -141,8 +141,8 @@ function Header({ tokenInSession, handleTokenInSession }) {
         openRegisterForm={() => handleOpenRegisterForm()}
         closeLoginForm={handleCloseLoginForm}
         displayForm={loginFormIsOpen ? { opacity: 1, zIndex: 8 } : { opacity: 0, zIndex: -8 }}
-        handleTokenInSession={() => handleTokenInSession()}
-        tokenInSession={tokenInSession}
+        handleIsLoggedIn={() => handleIsLoggedIn()}
+        isLoggedIn={isLoggedIn}
       />
       <Register
         closeRegisterForm={() => setRegisterFormIsOpen(false)}

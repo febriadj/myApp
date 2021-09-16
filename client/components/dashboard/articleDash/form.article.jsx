@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-function FormArticle({ tokenAuth }) {
+function FormArticle({ isLoggedIn }) {
   const [notif, setNotif] = useState(null);
   const fileContentValue = useRef();
 
@@ -39,7 +39,7 @@ function FormArticle({ tokenAuth }) {
       const request = await (await fetch('http://localhost:8000/api/articles', {
         method: 'post',
         headers: {
-          Authorization: `Bearer ${tokenAuth}`,
+          Authorization: `Bearer ${isLoggedIn.data.token}`,
         },
         body: formData,
       })).json();
