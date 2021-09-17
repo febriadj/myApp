@@ -27,7 +27,6 @@ exports.CreateArticle = (req, res) => {
   form.parse(req, async (error1, fields, files) => {
     try {
       // Rute terkunci, perlu autentikasi token JWT
-      console.log(fields, files);
       if ('admin' in req === false) {
         const newErr = {
           httpStatusCode: 401,
