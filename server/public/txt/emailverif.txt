@@ -1,8 +1,8 @@
-To complete your registration, Please verify your email address.
+To complete your registration, please verify your email address.
 
-Use the following code to confirm your email address:
+Use the following code to confirm your email address
 Code: %RegisCode%
 
-If you feel you are not registered to my website, please ignore this email. This is an automatic message. Please do not reply to this email.
+If you feel you are not registered to my website, please ignore this email. This is an automatic message, please do not reply to this email.
 
 Thank you.

@@ -13,7 +13,6 @@ const {
 const {
   CreateArticle,
   GetArticles,
-  GetArticleByUrl,
   DeleteArticle,
 } = require('../controllers/articles');
 
@@ -25,7 +24,6 @@ router.post('/admin/login', AdminLogin);
 router.delete('/admin/delete', AdminDelete);
 
 router.get('/articles', GetArticles);
-router.get('/articles/:url', GetArticleByUrl);
 router.post('/articles', authenticate, CreateArticle);
 router.delete('/articles', authenticate, DeleteArticle);
 

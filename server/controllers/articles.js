@@ -27,6 +27,7 @@ exports.CreateArticle = (req, res) => {
   form.parse(req, async (error1, fields, files) => {
     try {
       // Rute terkunci, perlu autentikasi token JWT
+      console.log(fields, files);
       if ('admin' in req === false) {
         const newErr = {
           httpStatusCode: 401,
@@ -65,33 +66,31 @@ exports.CreateArticle = (req, res) => {
 
 exports.GetArticles = async (req, res) => {
   try {
+    const keys = Object.keys(req.query)[0];
+    // Kondisi jika endpoint terdapat query parameter
+    if (keys in req.query) {
+      const dataByParams = await ArticleModel.find({
+        [keys]: {
+          $regex: new RegExp(Object.values(req.query)[0]),
+          $options: 'gi',
+        },
+      });
+
+      return res.status(200).json({
+        status: 'success', data: dataByParams,
+      });
+    }
+
     const data = await ArticleModel.find().sort({ createdAt: -1 });
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success', data,
     });
   }
   catch (error0) {
     const { message } = error0;
 
-    res.status(400).json({
-      status: 'failed', message,
-    });
-  }
-}
-
-exports.GetArticleByUrl = async (req, res) => {
-  try {
-    const data = await ArticleModel.findOne({ url: req.params.url });
-
-    res.status(200).json({
-      status: 'success', data,
-    })
-  }
-  catch (error0) {
-    const { message } = error0;
-
-    res.status(400).json({
+    return res.status(400).json({
       status: 'failed', message,
     });
   }
