@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-function ListArticle() {
-  // State untuk menyimpan seluruh artikel
-  const [listOfArticles, setListOfArticles] = useState([]);
-
-  // Mengambil seluruh artikel dari server
-  const takeAllArticles = async () => {
-    try {
-      const request = await (await fetch('http://localhost:8000/api/articles')).json();
-      setListOfArticles(request.data);
-    }
-    catch (error0) {
-      console.error(error0.message);
-    }
-  }
-
-  useEffect(() => takeAllArticles(), []);
-
+function ListArticle({ listOfArticles }) {
   const Components = () => ({
     articleCards({ data }) {
       return (

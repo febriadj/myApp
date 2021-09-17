@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-function FormArticle({ isLoggedIn }) {
+function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
   const [notif, setNotif] = useState(null);
   const fileContentValue = useRef();
 
@@ -56,6 +56,8 @@ function FormArticle({ isLoggedIn }) {
       setFormBody((prev) => ({
         ...prev, title: '', description: '', tags: '', fileContent: null,
       }));
+
+      handleTakeAllArticles();
     }
     catch (error0) {
       setNotif(error0.message);
