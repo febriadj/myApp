@@ -9,13 +9,17 @@ import MenuHeader from '../components/header/menu.header';
 import Login from './login';
 import Register from './register';
 import IconActiveTab from '../components/header/iconActiveTab.header';
+import Search from './search';
 
 function Header({ isLoggedIn, handleIsLoggedIn }) {
+  // State untuk formulir
   const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
   const [registerFormIsOpen, setRegisterFormIsOpen] = useState(false);
-  // State untuk menu icon header
+
+  // State untuk komponen Header
   const [menuIconIsOpen, setMenuIconIsOpen] = useState(false);
   const [iconActiveTab, setIconActiveTab] = useState(false);
+  const [searchTabIsOpen, setSearchTabIsOpen] = useState(false);
 
   // Handle buka & tutup formulir login
   const handleOpenLoginForm = () => {
@@ -77,6 +81,9 @@ function Header({ isLoggedIn, handleIsLoggedIn }) {
     return setIconActiveTab(true);
   }
 
+  const handleOpenSearchTab = () => setSearchTabIsOpen(true);
+  const handleCloseSearchTab = () => setSearchTabIsOpen(false);
+
   const ProfileIconComponents = () => {
     if (!isLoggedIn.status) {
       return (
@@ -120,7 +127,7 @@ function Header({ isLoggedIn, handleIsLoggedIn }) {
             </div>
           </div>
           <div className="headerIcons">
-            <button type="button" className="headerBtn"><img src={SearchIcon} alt={SearchIcon} className="icon searchIcon" /></button>
+            <button type="button" className="headerBtn" onClick={handleOpenSearchTab}><img src={SearchIcon} alt={SearchIcon} className="icon searchIcon" /></button>
             <ProfileIconComponents />
           </div>
           <div className="headerMenuIcon">
@@ -151,6 +158,10 @@ function Header({ isLoggedIn, handleIsLoggedIn }) {
       />
       <IconActiveTab
         styles={iconActiveTab === true ? { zIndex: 8, opacity: 1 } : { zIndex: -8, opacity: 0 }}
+      />
+      <Search
+        handleCloseSearchTab={() => handleCloseSearchTab()}
+        styles={searchTabIsOpen ? { opacity: 1, zIndex: 10 } : { opacity: 0, zIndex: -10 }}
       />
     </React.Fragment>
   );
