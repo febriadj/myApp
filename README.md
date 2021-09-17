@@ -11,10 +11,10 @@ In this documentation I want to explain a little about this application and some
   This application also has a dashboard page to manage articles and projects.
 
 # Screenshoot
-![register](vscode/images/register.png)
-![gmail](vscode/images/gmail.png)
-![gmail](vscode/images/articleDash.png)
-![gmail](vscode/images/search.png)
+![register](documents/images/register.png)
+![gmail](documents/images/gmail.png)
+![gmail](documents/images/articleDash.png)
+![gmail](documents/images/search.png)
 
 # Note
 This project has not been completed and is still in the development stage, the target for completion of this project is estimated at the end of this month.
