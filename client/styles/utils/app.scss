@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 $fontFamily: 'Urbanist', sans-serif;
 
 * {
@@ -35,12 +37,9 @@ input:-webkit-autofill::first-line {
 }
 
 .link {
-  padding: 4px 10px;
   color: #000;
   transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
   text-decoration: none;
-  text-align: center;
-  border-radius: 2rem;
 }
 
 @media screen and (max-width: 768px) {

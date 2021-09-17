@@ -1,0 +1,141 @@
+$fontMono: 'Roboto Mono', monospace;
+
+.search {
+  position: fixed;
+  width: 100%; height: 100%;
+  background-color: #f3f0dff8;
+  display: flex; justify-content: center;
+  z-index: 10;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  
+  .searchWrap {
+    width: 1224px; height: 100%;
+    display: flex; justify-content: center;
+    margin: 0 40px;
+    
+    .searchMain {
+      display: flex; flex-direction: column;
+      width: 100%;
+      padding: 40px 0;
+
+      .formsearch {
+        height: 40%;
+
+        .formsearchHeader {
+          position: relative;
+          display: flex; justify-content: space-between; align-items: flex-start;
+          
+          .title {
+            margin: 0 80px 0 0;
+          }
+          button {
+            position: absolute;
+            right: 0;
+            width: 50px; height: 50px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 2rem;
+            background-color: #e6e0d06e;
+            border-radius: 50%;
+            cursor: pointer;
+
+            .strip {
+              position: absolute;
+              display: block;
+              width: 30px; height: 1px;
+              background-color: #252525;
+            }
+
+            .strip-1 {
+              transform: rotate(-45deg);
+            }
+            .strip-2 {
+              transform: rotate(45deg);
+            }
+          }
+
+          button:hover {
+            filter: brightness(0.95);
+          }
+        }
+        input {
+          width: 100%;
+          border-bottom: 1px solid #252525;
+          padding: 10px 0;
+          margin: 30px 0 0 0;
+        }
+      }
+
+      .result {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        height: 60%;
+
+        
+        .jsonresult {
+          overflow: auto;
+          font-family: $fontMono;
+          font-size: 0.9rem;
+          padding: 20px;
+          background-color: #e6e0d06e;
+        }
+
+        .domresult {
+          display: flex; flex-direction: column;
+          overflow-y: auto;
+          
+          .domresultCard {
+            margin: 0 0 20px 0;
+            background-color: #e6e0d06e;
+            padding: 20px;
+
+            .tags {
+              display: flex; flex-wrap: wrap;
+              .linkTags {
+                margin: 0 10px 5px 0;
+                font-size: 1rem;
+                text-decoration: underline;
+              }
+            }
+            .linkTitle {
+              text-decoration: underline;
+            }
+            .description {
+              margin: 10px 0;
+            }
+            .time {
+              font-size: 0.9rem;
+              opacity: 0.7;
+              text-transform: capitalize;
+            }
+          }
+        }
+
+        .jsonresult::-webkit-scrollbar, .domresult::-webkit-scrollbar {
+          width: 5px;
+        }
+        .jsonresult::-webkit-scrollbar-thumb, .domresult::-webkit-scrollbar-thumb {
+          background-color: #b3b1a5;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .search {
+    .searchWrap {
+      margin: 0 20px;
+
+      .searchMain {
+
+        .result {
+          grid-template-columns: 1fr;
+          border: none;
+
+          .jsonresult {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
