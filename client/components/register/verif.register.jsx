@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export default function VerifRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) {
   // State notifikasi saat pengguna submit formulir
   const [notif, setNotif] = useState({
@@ -23,7 +25,8 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm, handle
     try {
       event.preventDefault();
 
-      const request = await (await fetch('http://localhost:8000/api/admin/register/accept', {
+      const endpoint = isDev ? 'http://localhost:8000/api/admin/register/accept' : '/api/admin/register/accept';
+      const request = await (await fetch(endpoint, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

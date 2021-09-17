@@ -13,13 +13,16 @@ import Default from './pages/default';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState({
     status: false, data: null,
   });
 
   const handleIsLoggedIn = async () => {
-    const requestToken = await (await fetch('http://localhost:8000/api/admin/session')).json();
+    const endpoint1 = isDev ? 'http://localhost:8000/api/admin/session' : '/api/admin/session';
+    const requestToken = await (await fetch(endpoint1)).json();
 
     if ('admin' in requestToken.data === false) {
       return setIsLoggedIn((prev) => ({
@@ -27,7 +30,8 @@ export default function App() {
       }));
     }
 
-    const requestAdmin = await (await fetch('http://localhost:8000/api/admin', {
+    const endpoint2 = isDev ? 'http://localhost:8000/api/admin' : '/api/admin';
+    const requestAdmin = await (await fetch(endpoint2, {
       method: 'get',
       headers: {
         Authorization: `Bearer ${requestToken.data.admin}`,

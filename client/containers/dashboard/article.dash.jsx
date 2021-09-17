@@ -4,6 +4,8 @@ import '../../styles/containers/dashboard/article.dash.scss';
 import FormArticle from '../../components/dashboard/articleDash/form.article';
 import ListArticle from '../../components/dashboard/articleDash/list.article';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 function ArticleDash({ isLoggedIn }) {
   // State untuk menyimpan seluruh artikel
   const [listOfArticles, setListOfArticles] = useState([]);
@@ -11,7 +13,9 @@ function ArticleDash({ isLoggedIn }) {
   // Mengambil seluruh artikel dari server
   const handleTakeAllArticles = async () => {
     try {
-      const request = await (await fetch('http://localhost:8000/api/articles')).json();
+      const endpoint = isDev ? 'http://localhost:8000/api/articles' : '/api/articles';
+      const request = await (await fetch(endpoint)).json();
+
       setListOfArticles(request.data);
     }
     catch (error0) {

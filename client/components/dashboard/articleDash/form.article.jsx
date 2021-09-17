@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
   const [notif, setNotif] = useState(null);
   const fileContentValue = useRef();
@@ -36,7 +38,8 @@ function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
       formData.append('tags', formBody.tags);
       formData.append('fileContent', formBody.fileContent);
 
-      const request = await (await fetch('http://localhost:8000/api/articles', {
+      const endpoint = isDev ? 'http://localhost:8000/api/articles' : '/api/articles';
+      const request = await (await fetch(endpoint, {
         method: 'post',
         headers: {
           Authorization: `Bearer ${isLoggedIn.data.token}`,

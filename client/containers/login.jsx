@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/containers/login.scss';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 function Login({
   handleIsLoggedIn,
   isLoggedIn,
@@ -27,7 +29,8 @@ function Login({
     try {
       event.preventDefault();
 
-      const request = await (await fetch('http://localhost:8000/api/admin/login', {
+      const endpoint = isDev ? 'http://localhost:8000/api/admin/login' : '/api/admin/login';
+      const request = await (await fetch(endpoint, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

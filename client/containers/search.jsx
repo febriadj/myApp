@@ -5,11 +5,15 @@ import FormSearch from '../components/search/form.search';
 import Result from '../components/search/result.search';
 import JsonResult from '../components/search/jsonresult.search';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 function Search({ styles, handleCloseSearchTab }) {
   const [listOfArticles, setListOfArticles] = useState([]);
 
   const handleFindAllArticles = async () => {
-    const request = await (await fetch('http://localhost:8000/api/articles')).json();
+    const endpoint = isDev ? 'http://localhost:8000/api/articles' : '/api/articles';
+    const request = await (await fetch(endpoint)).json();
+
     setListOfArticles(request.data);
   }
 
@@ -19,7 +23,9 @@ function Search({ styles, handleCloseSearchTab }) {
 
       if (value.length === 0) return handleFindAllArticles();
 
-      const request = await (await fetch(`http://localhost:8000/api/articles?title=${value}`)).json();
+      const endpoint = isDev ? `http://localhost:8000/api/articles?title=${value}` : `/api/articles?title=${value}`;
+      const request = await (await fetch(endpoint)).json();
+
       return setListOfArticles(request.data);
     }
     catch (error0) {

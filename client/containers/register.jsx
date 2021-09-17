@@ -4,13 +4,16 @@ import '../styles/containers/register.scss';
 import FormRegister from '../components/register/form.register';
 import VerifRegister from '../components/register/verif.register';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 function Register({ displayForm, closeRegisterForm, openLoginForm }) {
   // State data registrasi dari Session
   const [regisSession, setRegisSession] = useState({});
 
   const handleRegisSession = async () => {
     try {
-      const request = await (await fetch('http://localhost:8000/api/admin/session')).json();
+      const endpoint = isDev ? 'http://localhost:8000/api/admin/session' : '/api/admin/session';
+      const request = await (await fetch(endpoint)).json();
       // Cek apakah ada properti regisData didalam Session
       if ('regisData' in request.data === false) {
         const newErr = {
