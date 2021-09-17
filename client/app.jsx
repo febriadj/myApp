@@ -50,7 +50,7 @@ export default function App() {
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard" component={isLoggedIn.status ? Dashboard : Default} />
+        <Route exact path="/dashboard">{isLoggedIn.status ? <Dashboard isLoggedIn={isLoggedIn} /> : <Default />}</Route>
         <Route component={Default} />
       </Switch>
     </Router>
