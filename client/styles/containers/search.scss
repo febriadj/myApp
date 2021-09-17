@@ -110,7 +110,7 @@ $fontMono: 'Roboto Mono', monospace;
         }
 
         .jsonresult::-webkit-scrollbar, .domresult::-webkit-scrollbar {
-          width: 5px;
+          width: 5px; height: 5px;
         }
         .jsonresult::-webkit-scrollbar-thumb, .domresult::-webkit-scrollbar-thumb {
           background-color: #b3b1a5;
