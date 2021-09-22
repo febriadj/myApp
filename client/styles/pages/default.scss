@@ -1,59 +1,45 @@
-$fontFamily: 'Urbanist', sans-serif;
-
 .default {
   position: absolute;
   display: flex; justify-content: center; align-items: center;
   width: 100%; height: 100%;
 
-  .defaultWrap {
-    display: flex; align-items: center;
-    width: 768px;
-    margin: 0 40px;
+  .default_wrap {
+    width: 680px;
+    margin: 40px;
+    
+    .default_header {
+      display: flex; justify-content: center; align-items: center;
+      margin: 0 0 40px 0;
 
-    // Header 1 404
-    .default404 {
-      font-size: 9rem;
-      opacity: 0.8;
-    }
-    // Breaker Line (Garis Pemisah Antara H1 404 dengan Paragraf)
-    .defaultBreakerLine {
-      display: block;
-      background-color: #000;
-      margin: 0 20px;
-      width: 1px; height: 140px;
-    }
-    // Pesan untuk halaman 404
-    .defaultTxt {
-      p:nth-child(2) { margin: 10px 0 0 0; }
-
-      // Tautan yang direkomendasikan
-      .defaultLinks {
-        display: flex; align-items: center;
-        margin: 20px 0 0 0;
-
-        .link {
-          margin: 0 10px 0 0;
-          padding: 4px 10px;
-          border-radius: 2rem;
-          background-color: #f3f0df;
-        }
-        .link:hover {
-          filter: brightness(0.93);
-        }
+      .strip {
+        display: block;
+        width: 100px; height: 2px;
+        background: #303030;
+        margin: 0 10px 0 0;
       }
+      .title {
+        text-transform: uppercase;
+        font-size: 4rem;
+      }
+    }
+
+    .link {
+      text-transform: uppercase;
+      margin: 30px 0 0 0;
+      font-size: 0.8rem;
     }
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 400px) {
   .default {
-    .defaultWrap {
-      flex-direction: column; align-items: flex-start;
+    .default_wrap {
+      margin: 0 20px;
 
-      .default404 { font-size: 7rem }
-      .defaultBreakerLine {
-        width: 100%; height: 1px;
-        margin: 60px 0 20px 0;
+      .default_header {
+        .strip {
+          width: 50px;
+        }
       }
     }
   }

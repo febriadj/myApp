@@ -84,13 +84,14 @@
   z-index: -9;
   transform: translateX(-100%);
   transition: cubic-bezier(0.77, 0, 0.175, 1) 0.3s;
-
+  
   .menu_wrap {
     width: 400px;
     padding: 40px 40px 40px 120px;
     margin-right: 100px;
     background: #fff;
     display: grid; grid-template-columns: 1fr;
+    border-right: 1px solid #303030;
 
     .menu_links {
       display: flex; flex-direction: column;
@@ -207,6 +208,13 @@
       width: 100%;
       margin: 0;
       padding: 100px 20px 20px 20px;
+      border-right: none;
+
+      .menu_links {
+        .link {
+          margin: 0 0 10px 0;
+        }
+      }
     }
   }
 }

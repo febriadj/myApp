@@ -11,6 +11,7 @@
     background: #fff;
     padding: 40px;
     display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid #303030;
 
     .register_form {
       display: grid; grid-template-columns: 1fr; gap: 15px;
@@ -61,6 +62,7 @@
   .register {
     .register_wrap {
       padding: 20px;
+      border-right: none;
     }
   }
 }

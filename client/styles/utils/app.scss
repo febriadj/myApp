@@ -15,7 +15,6 @@
 }
 
 body {
-  background-color: #fcf6ff;
   font-family: neue_montreal; font-size: 16px;
 }
 
@@ -53,6 +52,7 @@ input:-webkit-autofill {
       display: block;
       background: #000;
       transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s;
+      transform: translateY(3px);
     }
 
     .strip-1 {

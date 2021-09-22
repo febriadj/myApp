@@ -1,113 +1,110 @@
 .home {
   position: absolute;
+  display: flex;
   width: 100%; height: 100%;
-  display: flex; justify-content: center;
-  overflow: hidden;
 
-  .homeWrap {
-    position: relative;
-    width: 1224px; height: 100%;
-    margin: 0 40px 0 120px;
-    display: flex; justify-content: flex-start; align-items: center;
+  .home_wrap {
+    margin: 40px 0 40px 0;
+    display: flex;
 
-    .homeHeader {
-      width: 690px;
-      transform: translateY(-40px);
+    .banner {
+      padding: 0 40px 0 120px;
 
-      // Home header H1 tag
-      .homeHeaderH1 {
-        font-size: 7rem;
-        line-height: 3.8rem;
-        margin: 40px 0 0 0;
-        opacity: 0.8;
+      .banner_header {
+        display: flex; align-items: center;
+        text-transform: uppercase;
+        font-size: 0.85rem;
         
-        span:nth-child(1) { color: #c9c4b5; }
-        span:nth-child(2) { z-index: 1; color: #867b5c; }
+        .strip {
+          display: block;
+          width: 100px; height: 2px;
+          background: #303030;
+          margin: 0 20px 0 0;
+        }
+      }
+
+      .title {
+        font-family: domaine_display;
+        margin: 30px 0 0 0;
+        font-size: 7rem;
+        line-height: 4rem;
+        background: linear-gradient(-45deg, transparent, #fcf6ff);
+      }
+
+      .banner_link {
+        display: flex; flex-direction: column; align-items: flex-end;
+        margin: 50px 0 0 0;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+
+        .link {
+          margin: 10px 0 0 0;
+        }
       }
     }
 
-    .homeFooter {
+    .footer {
       position: absolute;
-      width: 100%;
       bottom: 0;
-      
-      .homeFooterWrap {
-        display: flex; justify-content: space-between; align-items: flex-end;
-        padding: 0 0 20px 0;
-        font-size: 1rem;
+      width: 100%;
 
-        // Contact pada footer halaman Home
-        .homeContact {
-          display: grid; grid-template-columns: 1fr; gap: 10px;
+      .footer_wrap {
+        padding: 0 40px 40px 120px;
+        display: grid; grid-template-columns: 1fr 1fr; align-items: flex-end;
+
+        .footer_location {
+          .paragraf {
+            margin: 10px 0 0 0;
+          }
+  
+          .location_code {
+            letter-spacing: 0.2rem;
+          }
+        }
+
+        .footer_nav {
+          display: flex; justify-content: flex-end;
+
+          .footer_nav_wrap {
+            display: flex; flex-direction: column; align-items: flex-end;
+            text-transform: uppercase;
+            transform: rotate(90deg) translateX(-20px);
+
+            .link {
+              margin: 0 0 20px 0;
+              font-size: 0.85rem;
+            }
+          }
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 680px) {
   .home {
-    .homeWrap {
+    .home_wrap {
+      align-items: center;
+      margin: 0;
 
-      .homeHeader {
-        width: 100%;
+      .banner {
+        padding: 0 20px 0 20px;
+        transform: translateY(-40px);
 
-        .bullets {
-          width: 350px; height: 350px;
-        }
-
-        .homeHeaderH1 {
+        .title {
           font-size: 5rem;
-          line-height: 2.8rem;
-        }
-      }
-      
-      .homeTxt {
-        transform: translateY(0px);
-        text-align: left;
-        margin: 0;
-
-        p {
-          margin: 0 0 20px 0;
+          line-height: 3rem;
         }
       }
 
-      .homeFooter {
-        .homeFooterWrap {
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
-}
+      .footer {
+        .footer_wrap {
+          padding: 0 20px 20px 20px;
+          display: flex;
 
-@media screen and (max-width: 540px) {
-  .home {
-    .homeWrap {
-      margin: 0 20px;
-
-      .homeHeader {
-        .bullets {
-          width: 300px; height: 300px;
-          transform: translateY(-30px);
-        }
-
-        .homeHeaderH1 {
-          font-size: 4rem;
-          line-height: 2.3rem;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 355px) {
-  .home {
-    .homeWrap {
-      .homeHeader {
-        .homeHeaderH1 {
-          font-size: 3.6rem;
-          line-height: 2.1rem;
+          .footer_nav {
+            display: none;
+          }
         }
       }
     }

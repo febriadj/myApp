@@ -10,11 +10,12 @@
   .search_wrap {
     background: #fff;
     display: flex;
-
+    
     .search_main {
       width: 400px;
       padding: 40px 40px 40px 120px;
       display: grid; grid-template-rows: auto 1fr; gap: 40px;
+      border-right: 1px solid #303030;
   
       .form_search {
         .form_search_header {
@@ -80,6 +81,7 @@
       .search_main {
         width: 100%;
         padding: 80px 20px 20px 20px;
+        border-right: none;
       }
     }
   }
