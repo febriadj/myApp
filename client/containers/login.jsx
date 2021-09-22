@@ -70,29 +70,17 @@ function Login({
   const NotifComponent = () => {
     if (notif.status === null) return null;
 
-    const closeNotif = () => {
-      setNotif((prev) => ({
-        ...prev, status: null, message: '',
-      }));
-
-      // Kondisi jika sudah berhasil login
-      if (isLoggedIn.status) {
-        closeLoginForm();
-        // Pindah ke halaman Dashboard
-        history.push('/dashboard');
-      }
+    // Kondisi jika sudah berhasil login
+    if (isLoggedIn.status) {
+      closeLoginForm();
+      // Pindah ke halaman Dashboard
+      return history.push('/dashboard');
     }
 
     return (
       <div className="notif">
-        <div className="notifWrap">
+        <div className="notif_wrap">
           <p>{notif.message}</p>
-
-          {
-            notif.status === true
-              ? <button type="button" onClick={() => closeNotif()}>Close</button>
-              : <button type="button" onClick={() => closeNotif()}>Re-Enter</button>
-          }
         </div>
       </div>
     );
@@ -100,20 +88,20 @@ function Login({
 
   return (
     <div className="login" style={displayForm}>
-      <div className="loginWrap">
-        <form method="post" className="loginForm" onSubmit={handleSubmit}>
-          <NotifComponent />
+      <div className="login_wrap">
+        <form method="post" className="login_form" onSubmit={handleSubmit}>
           <button
             type="button"
-            className="fas fa-times closeBtn"
+            className="close_btn"
             onClick={closeLoginForm}
           >
+            Close
           </button>
           <h2>Login to manage the content of this website.</h2>
           <input
             type="text"
             name="nameOrEmail"
-            className="input inputNameOrEmail"
+            className="input input_nameOrEmail"
             placeholder="Username or Email"
             required
             value={formData.nameOrEmail}
@@ -122,23 +110,24 @@ function Login({
           <input
             type="password"
             name="password"
-            className="input inputPassword"
+            className="input input_password"
             placeholder="Password"
             required
             value={formData.password}
             onChange={handleChange}
           />
           <button type="submit" className="submit">Login</button>
-          <p className="ask">
-            Don't have an account yet?
-            <button
-              type="button"
-              onClick={openRegisterForm}
-            >
-              Register
-            </button>
-          </p>
+          <NotifComponent />
         </form>
+        <p className="ask">
+          Don't have an account yet?
+          <button
+            type="button"
+            onClick={openRegisterForm}
+          >
+            Register
+          </button>
+        </p>
       </div>
     </div>
   );

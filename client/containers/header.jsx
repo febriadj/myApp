@@ -1,167 +1,165 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/containers/header.scss';
+import '../styles/containers/navbar.scss';
 
 import UserIcon from '../assets/images/userIcon.png';
 import SearchIcon from '../assets/images/searchIcon.png';
 
-import MenuHeader from '../components/header/menu.header';
+import MenuNavbar from '../components/navbar/menu.navbar';
 import Login from './login';
 import Register from './register';
-import IconActiveTab from '../components/header/iconActiveTab.header';
+import MenuOnline from '../components/navbar/menuOnline.navbar';
 import Search from './search';
 
 function Header({ isLoggedIn, handleIsLoggedIn }) {
-  // State untuk formulir
-  const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
+  // state
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [registerFormIsOpen, setRegisterFormIsOpen] = useState(false);
+  const [loginFormIsOpen, setLoginFormIsOpen] = useState(false);
+  const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
+  const [menuOnlineIsOpen, setMenuOnlineIsOpen] = useState(false);
 
-  // State untuk komponen Header
-  const [menuIconIsOpen, setMenuIconIsOpen] = useState(false);
-  const [iconActiveTab, setIconActiveTab] = useState(false);
-  const [searchTabIsOpen, setSearchTabIsOpen] = useState(false);
+  const handleMenuIsOpen = () => {
+    // Tutup komponen navbar lain jika kondisi sedang terbuka
+    if (searchBarIsOpen) setSearchBarIsOpen(false);
+    if (menuOnlineIsOpen) setMenuOnlineIsOpen(false);
 
-  // Handle buka & tutup formulir login
+    // Jika menu dalam kondisi tertutup
+    if (!menuIsOpen) {
+      return setMenuIsOpen(true);
+    }
+
+    return setMenuIsOpen(false);
+  }
+
+  const handleCloseLoginForm = () => setLoginFormIsOpen(false);
+  const handleOpenRegisterForm = () => {
+    setLoginFormIsOpen(false);
+    setRegisterFormIsOpen(true);
+  };
+
   const handleOpenLoginForm = () => {
     setRegisterFormIsOpen(false);
     setLoginFormIsOpen(true);
   }
 
-  const handleOpenRegisterForm = () => {
-    setLoginFormIsOpen(false);
-    setRegisterFormIsOpen(true);
-  }
-
-  const handleCloseLoginForm = () => {
-    setLoginFormIsOpen(false);
-  }
-
-  const handleOpenMenuIcon = () => {
-    // Kondisi jika menu icon dalam keadaan tertutup
-    if (!menuIconIsOpen) {
-      return setMenuIconIsOpen(true);
+  const handleOpenSearchBar = () => {
+    // Tutup menu navbar jika kondisi sedang terbuka
+    if (menuIsOpen) {
+      setMenuIsOpen(false);
     }
 
-    return setMenuIconIsOpen(false);
-  }
-
-  const menuIconBtnIsOpen = () => {
-    const strips = document.querySelectorAll('.headerMenuIconBtn .line');
-
-    if (!menuIconIsOpen) {
-      const filterStrips = [strips[1], strips[2]];
-
-      for (let i = 0; i < filterStrips.length; i += 1) {
-        filterStrips[i].setAttribute('style', 'transform: rotate(0)');
-      }
-
-      strips[0].style = 'transform: translateY(-6px)';
-      strips[3].style = 'transform: translateY(6px)';
-
-      return false;
+    if (menuOnlineIsOpen) setMenuOnlineIsOpen(false);
+    if (!searchBarIsOpen) {
+      return setSearchBarIsOpen(true);
     }
 
-    const filterStrips = [strips[0], strips[3]];
-
-    for (let i = 0; i < filterStrips.length; i += 1) {
-      filterStrips[i].setAttribute('style', 'opacity: 0; transform: translateY(0)');
-    }
-
-    strips[1].style = 'transform: rotate(-45deg)';
-    strips[2].style = 'transform: rotate(45deg)';
-
-    return true;
+    return setSearchBarIsOpen(false);
   }
 
-  const openIconActiveTab = () => {
-    if (iconActiveTab) {
-      return setIconActiveTab(false);
+  const handleMenuOnlineIsOpen = () => {
+    if (!isLoggedIn.status) {
+      return setMenuOnlineIsOpen(false);
     }
 
-    return setIconActiveTab(true);
-  }
+    // Tutup komponen navbar lain jika kondisi sedang terbuka
+    if (searchBarIsOpen) setSearchBarIsOpen(false);
+    if (menuIsOpen) setMenuIsOpen(false);
+    if (menuOnlineIsOpen) return setMenuOnlineIsOpen(false);
 
-  const handleOpenSearchTab = () => setSearchTabIsOpen(true);
-  const handleCloseSearchTab = () => setSearchTabIsOpen(false);
+    return setMenuOnlineIsOpen(true);
+  }
 
   const ProfileIconComponents = () => {
     if (!isLoggedIn.status) {
       return (
         <button
-          className="headerBtn"
+          className="icons_btn navbar_profile_btn"
           type="button"
-          style={registerFormIsOpen || loginFormIsOpen ? { backgroundColor: '#f3f0df' } : null}
+          style={loginFormIsOpen || registerFormIsOpen ? { background: '#fcf6ff' } : null}
           onClick={handleOpenLoginForm}
         >
-          <img src={UserIcon} alt={UserIcon} className="icon profileIcon" />
+          <img src={UserIcon} alt={UserIcon} className="icons profile_icon" />
         </button>
       );
     }
 
     return (
       <button
-        className="headerBtn"
+        className="icons_btn navbar_profile_btn"
         type="button"
-        style={iconActiveTab ? { backgroundColor: '#f3f0df' } : null}
-        onClick={openIconActiveTab}
+        style={menuOnlineIsOpen ? { background: '#fcf6ff' } : null}
+        onClick={handleMenuOnlineIsOpen}
       >
-        <img src={UserIcon} alt={UserIcon} className="icon profileIcon" />
-        <span className="profileActive"></span>
+        <img src={UserIcon} alt={UserIcon} className="icons profile_icon" />
+        <span className="is_online"></span>
       </button>
     );
   }
 
-  useEffect(() => menuIconBtnIsOpen());
+  useEffect(() => handleMenuOnlineIsOpen(), []);
 
   return (
     <React.Fragment>
-      <div className="header">
-        <div className="headerWrap">
-          <div className="headerLogoAndLinks">
-            <Link to="/" className="headerLogo"><h3>Febx.</h3></Link>
-            <span className="headerBreakerLine"></span>
-            <div className="headerLinks">
-              <Link to="/articles" className="link">Articles</Link>
-              <Link to="/projects" className="link">Projects</Link>
-              <Link to="/about" className="link">About Me</Link>
-            </div>
-          </div>
-          <div className="headerIcons">
-            <button type="button" className="headerBtn" onClick={handleOpenSearchTab}><img src={SearchIcon} alt={SearchIcon} className="icon searchIcon" /></button>
+      <div className="navbar">
+        <div className="navbar_wrap">
+
+          <div className="navbar_header">
             <ProfileIconComponents />
-          </div>
-          <div className="headerMenuIcon">
-            <button type="button" className="headerMenuIconBtn" onClick={handleOpenMenuIcon}>
-              <span className="line line-1"></span>
-              <span className="line line-2"></span>
-              <span className="line line-3"></span>
-              <span className="line line-4"></span>
+            <button
+              type="button"
+              className="icons_btn navbar_search_btn"
+              style={searchBarIsOpen ? { background: '#fcf6ff' } : null}
+              onClick={handleOpenSearchBar}
+            >
+              <img src={SearchIcon} alt={SearchIcon} className="icons search_icon" />
             </button>
           </div>
+
+          <div className="navbar_menu">
+            <button type="button" className="navbar_menu_btn" onClick={handleMenuIsOpen}>
+              <div className="navbar_menu_icon">
+                <span className="strips strip-1"></span>
+                <span className="strips strip-2"></span>
+                <span className="strips strip-3"></span>
+                <span className="strips strip-4"></span>
+              </div>
+              <p className="paragraf">Menu</p>
+            </button>
+          </div>
+
         </div>
       </div>
 
-      <MenuHeader
-        styles={menuIconIsOpen ? { transform: 'translateX(0)' } : null}
+      <MenuNavbar
+        handleMenuIsOpen={handleMenuIsOpen}
+        styles={menuIsOpen ? { transform: 'translateX(0)', zIndex: 9 } : null}
       />
+
       <Login
         openRegisterForm={() => handleOpenRegisterForm()}
         closeLoginForm={handleCloseLoginForm}
-        displayForm={loginFormIsOpen ? { opacity: 1, zIndex: 8 } : { opacity: 0, zIndex: -8 }}
+        displayForm={loginFormIsOpen ? { transform: 'translateX(0)', zIndex: 10 } : null}
         handleIsLoggedIn={() => handleIsLoggedIn()}
         isLoggedIn={isLoggedIn}
       />
+
       <Register
         closeRegisterForm={() => setRegisterFormIsOpen(false)}
         openLoginForm={() => handleOpenLoginForm()}
-        displayForm={registerFormIsOpen ? { opacity: 1, zIndex: 8 } : { opacity: 0, zIndex: -8 }}
+        displayForm={registerFormIsOpen ? { transform: 'translateX(0)', zIndex: 10 } : null}
       />
-      <IconActiveTab
-        styles={iconActiveTab === true ? { zIndex: 8, opacity: 1 } : { zIndex: -8, opacity: 0 }}
+
+      <MenuOnline
+        handleMenuOnlineIsOpen={handleMenuOnlineIsOpen}
+        styles={
+          menuOnlineIsOpen ? { transform: 'translateX(0)', zIndex: 9, opacity: 1 } : null
+        }
       />
+
       <Search
-        handleCloseSearchTab={() => handleCloseSearchTab()}
-        styles={searchTabIsOpen ? { opacity: 1, zIndex: 10 } : { opacity: 0, zIndex: -10 }}
+        styles={
+          searchBarIsOpen ? { transform: 'translateX(0)', opacity: 1, zIndex: 8 } : null
+        }
       />
     </React.Fragment>
   );

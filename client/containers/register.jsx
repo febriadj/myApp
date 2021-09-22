@@ -37,7 +37,6 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
     if ('code' in regisSession === false) {
       return <FormRegister
         closeRegisterForm={closeRegisterForm}
-        openLoginForm={openLoginForm}
         handleRegisSession={handleRegisSession}
       />
     }
@@ -55,8 +54,15 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
 
   return (
     <div className="register" style={displayForm}>
-      <div className="registerWrap">
+      <div className="register_wrap">
         <Components />
+        <p className="ask">
+          Already have an account?
+
+          <button type="button" onClick={openLoginForm}>
+            Login
+          </button>
+        </p>
       </div>
     </div>
   );
