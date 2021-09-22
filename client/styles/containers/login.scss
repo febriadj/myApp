@@ -1,84 +1,69 @@
 .login {
   position: fixed;
-  display: flex; justify-content: center;
-  width: 100%;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  width: 100%; height: 100%;
+  display: flex;
+  transition: cubic-bezier(0.77, 0, 0.175, 1) 0.3s;
+  transform: translateX(-100%);
+  z-index: -8;
   
-  .loginWrap {
-    width: 1224px;
-    display: flex; justify-content: flex-end; align-items: flex-start;
 
-    .loginForm {
-      position: fixed;
-      width: 400px;
-      background-color: #f3f0df;
-      display: grid; grid-template-columns: 1fr; gap: 20px;
-      padding: 20px;
-      transform: translate(-40px, 70px);
+  .login_wrap {
+    position: relative;
+    width: 480px;
+    background: #fff;
+    padding: 40px;
+    display: flex; flex-direction: column; justify-content: space-between;
 
-      // Button untuk menutup tab formulir
-      .closeBtn {
+    .login_form {
+      display: grid; grid-template-columns: 1fr; gap: 15px;
+      position: relative;
+      padding: 40px 0 0 0;
+
+      .close_btn {
         position: absolute;
+        right: 0;
+        text-decoration: underline;
         cursor: pointer;
-        background-color: #ddd9c9;
-        width: 40px; height: 40px;
-        opacity: 0.5;
       }
-      // Header Formulir
-      h2 { opacity: 0.5; margin: 0 0 0 15px; }
-      .notif {
-        position: fixed;
-        width: 100%; height: 100%;
-        display: flex; justify-content: center; align-items: center;
-        background-color: #ddd9c9c0;
-        
-        .notifWrap {
-          margin: 0 40px;
-          padding: 20px;
-          display: flex; flex-direction: column; align-items: flex-start;
-          background-color: #f3f0df;
+      .close_btn:hover {
+        color: #734d86;
+      }
 
-          button {
-            margin: 15px 0 0 0;
-            border-bottom: 1px solid #b3b1a5;
-            padding: 2px 0;
-            cursor: pointer;
-          }
-          button:hover {
-            opacity: 0.7;
-          }
-        }
+      h2 {
+        text-transform: uppercase;
       }
-      .input { border-bottom: 1px solid #b3b1a5; padding: 10px 15px; }
-      .submit { background-color: #ddd9c9; padding: 10px 0; cursor: pointer; }
-      .submit:hover {
-        filter: brightness(0.95);
+
+      .input {
+        border-bottom: 1px solid #303030;
+        padding: 0 0 15px 0;
       }
-      .ask {
-        margin: 20px 0 0 0;
-        font-size: 1rem;
-        button {
-          font-size: 1rem;
-          text-decoration: underline;
-          margin: 0 0 0 10px;
-          cursor: pointer;
-        }
+
+      .submit {
+        background: #fcf6ff;
+        border-bottom: 1px solid #303030;
+        padding: 20px;
+        cursor: pointer;
+      }
+    }
+
+    .ask {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+
+      button {
+        margin: 0 0 0 10px;
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: 0.75rem;
       }
     }
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 680px) {
   .login {
-    height: 100%;
-    .loginWrap {
-      justify-content: center; align-items: flex-end;
-      
-      .loginForm {
-        position: relative;
-        width: 100%;
-        transform: translate(0);
-      }
+    .login_wrap {
+      padding: 20px;
     }
   }
 }

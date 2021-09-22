@@ -1,29 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
-$fontFamily: 'Urbanist', sans-serif;
+@font-face {
+  font-family: 'neue_montreal';
+  src: url('../../assets/fonts/neue-montreal/NeueMontreal-Regular.otf');
+}
+
+@font-face {
+  font-family: 'domaine_display';
+  src: url('../../assets/fonts/domaine-display/DomaineDispNar-Medium.otf');
+}
 
 * {
   padding: 0; margin: 0;
   border: none; outline: none;
 }
 
-*::selection {
-  background-color: #ddd9c9de;
-}
-
 body {
-  background-color: #fffef6;
-  font-family: $fontFamily; font-size: 1.1rem;
+  background-color: #fcf6ff;
+  font-family: neue_montreal; font-size: 16px;
 }
 
-p { line-height: 1.4rem; }
-h1, h2, h3 { line-height: 2rem; }
+h1, h2, h3 { line-height: 2.2rem; }
 
 input, button {
-  font-family: $fontFamily; font-size: 1.1rem;
+  font-family: neue_montreal; font-size: 1.1rem;
   background-color: transparent;
   border-radius: 0;
+  letter-spacing: 0.1rem;
+}
+
+input::-webkit-input-placeholder, button {
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 input:-webkit-autofill {
@@ -31,19 +38,60 @@ input:-webkit-autofill {
   transition-delay: 9999s;
 }
 
-input:-webkit-autofill::first-line {
-  font-size: 1.1rem;
-  font-family: $fontFamily;
-}
-
 .link {
   color: #000;
-  transition: cubic-bezier(0.23, 1, 0.320, 1) 0.5s;
   text-decoration: none;
+  display: flex;
+
+  .link_wrap {
+    position: relative;
+
+    .strips {
+      width: 100%; height: 1px;
+      position: absolute;
+      bottom: 0;
+      display: block;
+      background: #000;
+      transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s;
+    }
+
+    .strip-1 {
+      width: 0; opacity: 0;
+      left: 0;
+      transition-delay: 0s;
+    }
+    .strip-2 {
+      transition-delay: 0.3s;
+      right: 0;
+    }
+  }
 }
 
-@media screen and (max-width: 768px) {
+.link:hover {
+  color: #734d86;
+
+  .link_wrap {
+    .strips {
+      background: #734d86;
+    }
+    .strip-1 {
+      width: 100%; opacity: 1;
+      transition-delay: 0.3s;
+    }
+    .strip-2 {
+      width: 0; opacity: 0;
+      transition-delay: 0s;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
   body {
-    font-size: 1rem;
+    font-size: 14px;
+    background: #fff;
+  }
+
+  button, input {
+    font-size: 14px;
   }
 }
