@@ -48,21 +48,26 @@ function Register({ displayForm, closeRegisterForm, openLoginForm }) {
     />
   }
 
-  useEffect(() => {
-    handleRegisSession();
-  }, []);
+  const AskToLoginComponent = () => {
+    if ('code' in regisSession === false) {
+      return (
+        <p className="ask">
+          Already have an account?
+          <button type="button" onClick={openLoginForm}>Login</button>
+        </p>
+      );
+    }
+
+    return null;
+  }
+
+  useEffect(() => handleRegisSession(), []);
 
   return (
     <div className="register" style={displayForm}>
       <div className="register_wrap">
         <Components />
-        <p className="ask">
-          Already have an account?
-
-          <button type="button" onClick={openLoginForm}>
-            Login
-          </button>
-        </p>
+        <AskToLoginComponent />
       </div>
     </div>
   );

@@ -44,13 +44,13 @@ function MenuNavbar({ styles, handleMenuIsOpen }) {
         <div className="menu_media">
           <p className="header">About</p>
           <p className="paragraf paragraf-1">
-            The code of this app is open source, you can see the source code through my
-            <a href="https://github.com/febriadj/myApp">Github</a>
-            repository, and also please know about the license used on this app.
+            Hi, I would like to inform you that the source code of this website is open source,
+            visit my
+            <a href="https://github.com/febriadj/myApp">Github Repository</a>
+            to see the source code.
           </p>
           <p className="paragraf paragraf-2">
-            if you have some suggestions or criticisms for me,
-            you can visit the feedback page I have provided
+            If you have any feedback to give me, I've prepared a feedback page for you
           </p>
         </div>
       </div>

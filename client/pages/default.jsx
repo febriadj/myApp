@@ -10,20 +10,19 @@ export default function Default() {
 
   return (
     <div className="default">
-      <div className="defaultWrap">
-        <h1 className="default404">404</h1>
-        <span className="defaultBreakerLine"></span>
-        <div className="defaultTxt">
-          <p>The page you are looking for could not be found.</p>
-          <p>
-            Please double check your url address or you can visit
-            another link I recommend for you below.
-          </p>
-          <div className="defaultLinks">
-            <Link to="/articles" className="link">Articles</Link>
-            <Link to="/projects" className="link">Projects</Link>
-          </div>
+      <div className="default_wrap">
+        <div className="default_header">
+          <span className="strip"></span>
+          <h1 className="title">Oops. 404</h1>
         </div>
+        <p className="paragraf">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, eos, dignissimos libero exercitationem excepturi necessitatibus, reiciendis repellat voluptas laborum ex officiis sit. Minus aspernatur dolorem voluptate quisquam enim vitae omnis.</p>
+        <Link to="/" className="link">
+          <div className="link_wrap">
+            <p>Back to Main Page</p>
+            <span className="strips strip-1"></span>
+            <span className="strips strip-2"></span>
+          </div>
+        </Link>
       </div>
     </div>
   );

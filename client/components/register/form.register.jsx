@@ -45,7 +45,6 @@ function FormRegister({ closeRegisterForm, handleRegisSession }) {
         username: '',
         email: '',
         password: '',
-        permissionCode: '',
       }));
 
       if (request.status === 'failed') {

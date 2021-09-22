@@ -53,6 +53,8 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm, handle
         status: true,
         message: 'You have completed registration, now you can login with that account.',
       }));
+
+      handleRegisSession();
     }
     catch (error0) {
       const { message } = error0;
@@ -60,31 +62,21 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm, handle
       setNotif((prev) => ({
         ...prev, status: false, message,
       }));
-
-      console.error(message);
     }
   }
 
   const NotifComponent = () => {
     if (notif.status === null) return null;
 
-    const closeNotif = () => {
-      setNotif((prev) => ({
-        ...prev, status: null, message: '',
-      }));
-
-      return handleRegisSession();
-    }
-
     return (
       <div className="notif">
-        <div className="notifWrap">
+        <div className="notif_wrap">
           <p>{notif.message}</p>
 
           {
-            notif.status === true
+            notif.status === false
               ? <button type="button" onClick={openLoginForm}>Click me to Login</button>
-              : <button type="button" onClick={() => closeNotif()}>Close</button>
+              : null
           }
         </div>
       </div>
@@ -92,19 +84,19 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm, handle
   }
 
   return (
-    <form method="post" className="registerForm" onSubmit={handleSubmit}>
-      <NotifComponent />
+    <form method="post" className="register_form" onSubmit={handleSubmit}>
       <button
         type="button"
-        className="fas fa-times closeBtn"
+        className="close_btn"
         onClick={closeRegisterForm}
       >
+        Close
       </button>
       <h2>Enter your Registration Code and Permission Code.</h2>
       <input
         type="number"
         name="clientRegisCode"
-        className="input inputRegisCode"
+        className="input input_regis_code"
         placeholder="Registration Code"
         required
         value={formData.clientRegisCode}
@@ -113,17 +105,14 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm, handle
       <input
         type="text"
         name="permissionCode"
-        className="input inputPermissionCode"
+        className="input input_permission_code"
         placeholder="Permission Code"
         required
         value={formData.permissionCode}
         onChange={handleChange}
       />
       <button type="submit" className="submit">Register</button>
-      <p className="ask">
-        I have sent your registration code by email, then for the permission code
-        you must get permission from the owner of this website
-      </p>
+      <NotifComponent />
     </form>
   );
 }
