@@ -7,7 +7,7 @@ import {
 
 import './styles/utils/app.scss';
 
-import Header from './containers/header';
+import Navbar from './containers/navbar';
 
 import Default from './pages/default';
 import Home from './pages/home';
@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <Router>
-      <Header isLoggedIn={isLoggedIn} handleIsLoggedIn={handleIsLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} handleIsLoggedIn={handleIsLoggedIn} />
 
       <Switch>
         <Route exact path="/" component={Home} />

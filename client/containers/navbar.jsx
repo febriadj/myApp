@@ -10,7 +10,7 @@ import Register from './register';
 import MenuOnline from '../components/navbar/menuOnline.navbar';
 import Search from './search';
 
-function Header({ isLoggedIn, handleIsLoggedIn }) {
+function Navbar({ isLoggedIn, handleIsLoggedIn }) {
   // state
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [registerFormIsOpen, setRegisterFormIsOpen] = useState(false);
@@ -165,4 +165,4 @@ function Header({ isLoggedIn, handleIsLoggedIn }) {
   );
 }
 
-export default Header;
+export default Navbar;
