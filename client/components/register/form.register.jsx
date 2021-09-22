@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-function FormRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) {
+function FormRegister({ closeRegisterForm, handleRegisSession }) {
   // State notifikasi saat pengguna submit formulir
   const [notif, setNotif] = useState({
     status: null,
@@ -60,6 +60,8 @@ function FormRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) 
         status: true,
         message: 'Your account has been successfully created, please complete the next step',
       }));
+
+      handleRegisSession();
     }
     catch (error0) {
       const { message } = error0;
@@ -75,43 +77,29 @@ function FormRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) 
   const NotifComponent = () => {
     if (notif.status === null) return null;
 
-    const closeNotif = () => {
-      setNotif((prev) => ({
-        ...prev, status: null, message: '',
-      }));
-
-      return handleRegisSession();
-    }
-
     return (
       <div className="notif">
         <div className="notifWrap">
           <p>{notif.message}</p>
-
-          {
-            notif.status === true
-              ? <button type="button" onClick={() => closeNotif()}>Next Step</button>
-              : <button type="submit" onClick={() => closeNotif()}>Re-Registrasion</button>
-          }
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    <form method="post" className="registerForm" onSubmit={handleSubmit}>
-      <NotifComponent />
+    <form method="post" className="register_form" onSubmit={handleSubmit}>
       <button
         type="button"
-        className="fas fa-times closeBtn"
+        className="close_btn"
         onClick={closeRegisterForm}
       >
+        Close
       </button>
       <h2>Register yourself as admin of this website.</h2>
       <input
         type="text"
         name="username"
-        className="input inputUsername"
+        className="input input_username"
         placeholder="Username"
         required
         value={formData.username}
@@ -120,7 +108,7 @@ function FormRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) 
       <input
         type="email"
         name="email"
-        className="input inputEmail"
+        className="input input_email"
         placeholder="Email"
         required
         value={formData.email}
@@ -129,21 +117,14 @@ function FormRegister({ closeRegisterForm, openLoginForm, handleRegisSession }) 
       <input
         type="password"
         name="password"
-        className="input inputPassword"
+        className="input input_password"
         placeholder="Password"
         required
         value={formData.password}
         onChange={handleChange}
       />
       <button type="submit" className="submit">Register</button>
-
-      <p className="ask">
-        Already have an account?
-
-        <button type="button" onClick={openLoginForm}>
-          Login
-        </button>
-      </p>
+      <NotifComponent />
     </form>
   );
 }

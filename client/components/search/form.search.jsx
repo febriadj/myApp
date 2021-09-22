@@ -1,11 +1,11 @@
 import React from 'react';
 
-function FormSearch({ handleChange, handleCloseSearchTab }) {
+function FormSearch({ handleChange }) {
   return (
-    <div className="formsearch">
-      <div className="formsearchHeader">
+    <div className="form_search">
+      <div className="form_search_header">
         <h1 className="title">Find the Article You Want to Read.</h1>
-        <button type="button" onClick={handleCloseSearchTab}>
+        <button type="button">
           <span className="strip strip-1"></span>
           <span className="strip strip-2"></span>
         </button>
@@ -16,6 +16,7 @@ function FormSearch({ handleChange, handleCloseSearchTab }) {
         placeholder="Enter Something"
         required
         onChange={handleChange}
+        autoComplete="off"
       />
     </div>
   );
