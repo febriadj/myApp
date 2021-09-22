@@ -1,8 +1,8 @@
 const crypto = require('crypto');
-const fs = require('fs');
 const { IncomingForm } = require('formidable');
-const AdminModel = require('../models/admin.model');
+const mv = require('mv');
 const ArticleModel = require('../models/article.model');
+const AdminModel = require('../models/admin.model');
 
 exports.CreateArticle = (req, res) => {
   const form = new IncomingForm();
@@ -37,22 +37,32 @@ exports.CreateArticle = (req, res) => {
 
       // Penanganan error formidable
       if (error1) throw error1;
-      // Buat folder uploads jika belum tersedia
-      if (!fs.existsSync('uploads/')) fs.mkdirSync('uploads/');
 
       // Tanda atau karakter penghubung
       const url = fields.title.split(/[\s_.]/g).join('-');
       const filename = `${crypto.randomBytes(16).toString('hex')}.md`;
 
-      const data = await handleUpload(fields, url, filename);
       // Kirim file ke folder uploads/
-      const raw = fs.readFileSync(files.fileContent.name, 'utf8');
-      fs.writeFileSync(`uploads/${filename}`, raw);
+      mv(files.fileContent.name, `${__dirname}/../../uploads/${filename}`, { mkdirp: true }, async (error2) => {
+        try {
+          if (error2) throw error2;
+          const data = await handleUpload(fields, url, filename);
 
-      res.status(200).json({
-        status: 'success', data,
+          res.status(200).json({
+            status: 'success', data,
+          });
+        }
+        // Penanganan error MV
+        catch (error3) {
+          const { httpStatusCode, message } = error3;
+
+          res.status(httpStatusCode || 400).json({
+            status: 'failed', message,
+          });
+        }
       });
     }
+    // Penanganan error formidable
     catch (error0) {
       const { httpStatusCode, message } = error0;
 
