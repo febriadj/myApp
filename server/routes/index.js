@@ -8,6 +8,7 @@ const {
   AccAdminRegister,
   AdminLogin,
   AdminDelete,
+  AdminLogout,
 } = require('../controllers/admin');
 
 const {
@@ -18,6 +19,7 @@ const {
 
 router.get('/admin', authenticate, AdminDataInSession);
 router.get('/admin/session', AdminTokenInSession);
+router.get('/admin/logout', authenticate, AdminLogout);
 router.post('/admin/register', AdminRegister);
 router.post('/admin/register/accept', AccAdminRegister);
 router.post('/admin/login', AdminLogin);
