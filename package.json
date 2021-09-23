@@ -14,7 +14,8 @@
     "client-start": "webpack --mode=development",
     "client-dev": "webpack serve --mode=development --config ./webpack.config.js --open",
     "build": "webpack --mode=production",
-    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\""
+    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
