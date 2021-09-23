@@ -39,6 +39,7 @@ function DashArticle({ isLoggedIn }) {
           </div>
         </div>
         <ListArticle
+          isLoggedIn={isLoggedIn}
           handleTakeAllArticles={handleTakeAllArticles}
           listOfArticles={listOfArticles}
         />

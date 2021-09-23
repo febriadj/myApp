@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-function Result({ handleTakeAllArticles, listOfArticles }) {
+function Result({ isLoggedIn, handleTakeAllArticles, listOfArticles }) {
   const [deleteData, setDeleteData] = useState({
     id: null, title: null,
   });
@@ -31,7 +31,7 @@ function Result({ handleTakeAllArticles, listOfArticles }) {
       await (await fetch(endpoint, {
         method: 'delete',
         headers: {
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGIwZmEwMTFlNjdlZWU5ZWFiMjgyNyIsImlhdCI6MTYzMjMyMDk0OX0.B9vfaaZHIZypCsv7quBgVYNSZSsWC73AMIZnTGTz8uU',
+          Authorization: `Bearer ${isLoggedIn.data.token}`,
         },
       })).json();
 
