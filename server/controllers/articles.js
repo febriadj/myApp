@@ -1,6 +1,7 @@
 const crypto = require('crypto');
-const { IncomingForm } = require('formidable');
+const fs = require('fs');
 const mv = require('mv');
+const { IncomingForm } = require('formidable');
 const ArticleModel = require('../models/article.model');
 const AdminModel = require('../models/admin.model');
 
@@ -43,7 +44,7 @@ exports.CreateArticle = (req, res) => {
       const filename = `${crypto.randomBytes(16).toString('hex')}.md`;
 
       // Kirim file ke folder uploads/
-      mv(files.fileContent.name, `${__dirname}/../../uploads/${filename}`, { mkdirp: true }, async (error2) => {
+      mv(files.fileContent.path, `${__dirname}/../../uploads/${filename}`, { mkdirp: true }, async (error2) => {
         try {
           if (error2) throw error2;
           const data = await handleUpload(fields, url, filename);
@@ -126,6 +127,8 @@ exports.DeleteArticle = async (req, res) => {
       }
       throw newErr;
     }
+
+    fs.unlinkSync(`${__dirname}/../../uploads/${data.filename}`);
 
     // Mengirim data dokumen ke client
     res.status(200).json({

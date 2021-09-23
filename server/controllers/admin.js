@@ -183,6 +183,32 @@ exports.AdminLogin = async (req, res) => {
   }
 }
 
+exports.AdminLogout = async (req, res) => {
+  try {
+    // Rute terkunci, perlu autentikasi token JWT
+    if ('admin' in req === false) {
+      const newErr = {
+        httpStatusCode: 401,
+        message: 'This route is locked',
+      }
+      throw newErr;
+    }
+    // Hapus data Admin di Session
+    delete req.session.admin;
+
+    res.status(200).json({
+      status: 'success',
+    });
+  }
+  catch (error0) {
+    const { message } = error0;
+
+    res.status(400).json({
+      status: 'failed', message,
+    });
+  }
+}
+
 exports.AdminDelete = async (req, res) => {
   try {
     // Menghapus dokumen berdasarkan id
