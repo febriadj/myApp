@@ -149,6 +149,7 @@ function Navbar({ isLoggedIn, handleIsLoggedIn }) {
 
       <MenuOnline
         handleMenuOnlineIsOpen={handleMenuOnlineIsOpen}
+        isLoggedIn={isLoggedIn}
         handleIsLoggedIn={handleIsLoggedIn}
         styles={
           menuOnlineIsOpen ? { transform: 'translateX(0)', zIndex: 9, opacity: 1 } : null

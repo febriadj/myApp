@@ -50,13 +50,13 @@ function Login({
         throw newErr;
       }
 
+      handleIsLoggedIn();
+
       setNotif((prev) => ({
         ...prev,
         status: true,
         message: 'You have successfully logged in, I will redirect you to the Dashboard page',
       }));
-
-      handleIsLoggedIn();
     }
     catch (error0) {
       const { message } = error0;
@@ -73,8 +73,13 @@ function Login({
     // Kondisi jika sudah berhasil login
     if (isLoggedIn.status) {
       closeLoginForm();
+
+      setNotif((prev) => ({
+        ...prev, status: null, message: '',
+      }));
+
       // Pindah ke halaman Dashboard
-      return setTimeout(() => history.push('/dashboard'), 1000);
+      return setTimeout(() => history.push('/dashboard'), 2000);
     }
 
     return (

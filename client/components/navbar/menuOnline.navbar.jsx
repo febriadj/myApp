@@ -1,15 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-function MenuOnline({ styles, handleMenuOnlineIsOpen, handleIsLoggedIn }) {
+function MenuOnline({
+  styles,
+  isLoggedIn,
+  handleMenuOnlineIsOpen,
+  handleIsLoggedIn,
+}) {
+  const history = useHistory();
   const handleLogout = async () => {
     try {
       const endpoint = isDev ? 'http://localhost:8000/api/admin/logout' : '/api/admin/logout';
-      await (await fetch(endpoint)).json();
+      await (await fetch(endpoint, {
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${isLoggedIn.data.token}`,
+        },
+      })).json();
 
       handleIsLoggedIn();
+      handleMenuOnlineIsOpen();
+
+      history.push('/');
     }
     catch (error0) {
       console.error(error0.message);

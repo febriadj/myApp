@@ -74,7 +74,7 @@ export default function VerifRegister({ closeRegisterForm, openLoginForm, handle
           <p>{notif.message}</p>
 
           {
-            notif.status === false
+            notif.status
               ? <button type="button" onClick={openLoginForm}>Click me to Login</button>
               : null
           }
