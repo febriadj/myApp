@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/containers/navbar.scss';
 
 import UserIcon from '../assets/images/userIcon.png';
@@ -96,8 +96,6 @@ function Navbar({ isLoggedIn, handleIsLoggedIn }) {
     );
   }
 
-  useEffect(() => handleMenuOnlineIsOpen(), []);
-
   return (
     <React.Fragment>
       <div className="navbar">
@@ -139,7 +137,7 @@ function Navbar({ isLoggedIn, handleIsLoggedIn }) {
         openRegisterForm={() => handleOpenRegisterForm()}
         closeLoginForm={handleCloseLoginForm}
         displayForm={loginFormIsOpen ? { transform: 'translateX(0)', zIndex: 10 } : null}
-        handleIsLoggedIn={() => handleIsLoggedIn()}
+        handleIsLoggedIn={handleIsLoggedIn}
         isLoggedIn={isLoggedIn}
       />
 
@@ -151,6 +149,7 @@ function Navbar({ isLoggedIn, handleIsLoggedIn }) {
 
       <MenuOnline
         handleMenuOnlineIsOpen={handleMenuOnlineIsOpen}
+        handleIsLoggedIn={handleIsLoggedIn}
         styles={
           menuOnlineIsOpen ? { transform: 'translateX(0)', zIndex: 9, opacity: 1 } : null
         }

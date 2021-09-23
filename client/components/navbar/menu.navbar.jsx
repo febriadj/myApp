@@ -11,6 +11,13 @@ function MenuNavbar({ styles, handleMenuIsOpen }) {
       <div className="menu_wrap">
 
         <div className="menu_links">
+          <Link to="/" className="link" onClick={handleClick}>
+            <div className="link_wrap">
+              <p>Home</p>
+              <span className="strips strip-1"></span>
+              <span className="strips strip-2"></span>
+            </div>
+          </Link>
           <Link to="/articles" className="link" onClick={handleClick}>
             <div className="link_wrap">
               <p>Articles</p>
@@ -28,13 +35,6 @@ function MenuNavbar({ styles, handleMenuIsOpen }) {
           <Link to="/portfolio" className="link" onClick={handleClick}>
             <div className="link_wrap">
               <p>Portfolio</p>
-              <span className="strips strip-1"></span>
-              <span className="strips strip-2"></span>
-            </div>
-          </Link>
-          <Link to="/contact" className="link" onClick={handleClick}>
-            <div className="link_wrap">
-              <p>Contact</p>
               <span className="strips strip-1"></span>
               <span className="strips strip-2"></span>
             </div>

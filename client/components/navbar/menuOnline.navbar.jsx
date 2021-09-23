@@ -1,7 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function MenuOnline({ styles, handleMenuOnlineIsOpen }) {
+const isDev = process.env.NODE_ENV === 'development';
+
+function MenuOnline({ styles, handleMenuOnlineIsOpen, handleIsLoggedIn }) {
+  const handleLogout = async () => {
+    try {
+      const endpoint = isDev ? 'http://localhost:8000/api/admin/logout' : '/api/admin/logout';
+      await (await fetch(endpoint)).json();
+
+      handleIsLoggedIn();
+    }
+    catch (error0) {
+      console.error(error0.message);
+    }
+  }
+
   return (
     <div className="menu_online" style={styles}>
       <div className="menu_online_wrap">
@@ -21,7 +35,8 @@ function MenuOnline({ styles, handleMenuOnlineIsOpen }) {
         </Link>
         <button
           className="logout_btn"
-          type="submit"
+          type="button"
+          onClick={handleLogout}
         >
           Logout
         </button>

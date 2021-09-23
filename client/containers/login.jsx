@@ -74,7 +74,7 @@ function Login({
     if (isLoggedIn.status) {
       closeLoginForm();
       // Pindah ke halaman Dashboard
-      return history.push('/dashboard');
+      return setTimeout(() => history.push('/dashboard'), 1000);
     }
 
     return (

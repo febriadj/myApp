@@ -11,7 +11,7 @@ import Navbar from './containers/navbar';
 
 import Default from './pages/default';
 import Home from './pages/home';
-import Dashboard from './pages/dashboard';
+import DashArticle from './pages/dashboard/article';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -24,7 +24,7 @@ export default function App() {
     const endpoint1 = isDev ? 'http://localhost:8000/api/admin/session' : '/api/admin/session';
     const requestToken = await (await fetch(endpoint1)).json();
 
-    if ('admin' in requestToken.data === false) {
+    if ('admin' in requestToken.data === false || !requestToken.data.admin) {
       return setIsLoggedIn((prev) => ({
         ...prev, status: false, data: null,
       }));
@@ -54,7 +54,7 @@ export default function App() {
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard">{isLoggedIn.status ? <Dashboard isLoggedIn={isLoggedIn} /> : <Default />}</Route>
+        <Route exact path="/dashboard">{isLoggedIn.status ? <DashArticle isLoggedIn={isLoggedIn} /> : <Default />}</Route>
         <Route component={Default} />
       </Switch>
     </Router>

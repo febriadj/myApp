@@ -70,27 +70,25 @@ function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
   const NotifComponent = () => {
     if (notif === null) return null;
 
-    const closeNotif = () => setNotif(null);
-
     return (
       <div className="notif">
         <div className="notifWrap">
           <p>{notif}</p>
-          <button type="button" onClick={closeNotif}>Close</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="articledashForm">
-      <div className="articledashFormHeader">
-        <NotifComponent />
-        <h2 className="title">Create Your Article.</h2>
-        <span></span>
+    <div className="dasharticle_form">
+      <div className="dasharticle_form_wrap">
+        <div className="dasharticle_form_header">
+          <span className="strip"></span>
+          <h2 className="title">Create A New Article.</h2>
+        </div>
         <form method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
           <input
-            className="input inputTitle"
+            className="input input_title"
             type="text"
             name="title"
             placeholder="What is the title of the Article?"
@@ -99,7 +97,7 @@ function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
             value={formBody.title}
           />
           <input
-            className="input inputDescription"
+            className="input input_description"
             type="text"
             name="description"
             placeholder="Enter a short description for the Article"
@@ -108,7 +106,7 @@ function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
             value={formBody.description}
           />
           <input
-            className="input inputTags"
+            className="input input_tags"
             type="text"
             name="tags"
             placeholder="Give some tags"
@@ -117,7 +115,7 @@ function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
             value={formBody.tags}
           />
           <input
-            className="input inputFileContent"
+            className="input input_file_content"
             type="file"
             name="fileContent"
             required
@@ -125,10 +123,8 @@ function FormArticle({ isLoggedIn, handleTakeAllArticles }) {
             ref={fileContentValue}
           />
           <button type="submit">Submit</button>
+          <NotifComponent />
         </form>
-      </div>
-      <div className="articledashFormFooter">
-        <p>&copy; 2021 Mr.Febx</p>
       </div>
     </div>
   );
