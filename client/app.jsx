@@ -12,6 +12,8 @@ import Navbar from './containers/navbar';
 import Default from './pages/default';
 import Home from './pages/home';
 import DashArticle from './pages/dashboard/article';
+import Articles from './pages/articles';
+import ArticleContent from './pages/articleContent';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -55,6 +57,8 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/dashboard">{isLoggedIn.status ? <DashArticle isLoggedIn={isLoggedIn} /> : <Default />}</Route>
+        <Route exact path="/articles" component={Articles} />
+        <Route exact path="/articles/:url" component={ArticleContent} />
         <Route component={Default} />
       </Switch>
     </Router>
