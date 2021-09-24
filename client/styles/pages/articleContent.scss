@@ -1,0 +1,67 @@
+.article_content {
+  width: 100%;
+  display: flex; justify-content: center;
+
+  .article_content_wrap {
+    width: 800px;
+    padding: 40px 40px 40px 100px;
+
+    .content {
+      width: auto;
+      .header {
+        margin: 0 0 80px 0;
+        
+        .title {
+          border: none;
+          margin: 0;
+          font-size: 2rem;
+        }
+        .author {
+          text-transform: uppercase;
+          font-size: 0.85rem;
+          margin: 40px 0 10px 0;
+        }
+      }
+
+      div {
+        h1, h2 {
+          margin: 50px 0 20px 0;
+          text-transform: uppercase;
+          font-size: 1.6rem;
+        }
+
+        code {
+          font-family: neue_montreal;
+          background: #fcf6ff;
+          padding: 0 5px;
+          border-bottom: 1px solid #c5bdc9;
+        }
+  
+        pre {
+          margin: 20px 0;
+          background: #fcf6ff;
+          padding: 20px;
+          white-space: pre-wrap;
+  
+          code {
+            margin: 0; padding: 0;
+            border: none;
+            font-family: hack;
+            font-size: 0.8rem;
+            background: transparent;
+            overflow-x: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .article_content {
+
+    .article_content_wrap {
+      padding: 80px 20px 20px 20px;
+    }
+  }
+}
