@@ -6,7 +6,7 @@ import Result from '../components/search/result.search';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-function Search({ styles }) {
+function Search({ styles, handleOpenSearchBar }) {
   const [listOfArticles, setListOfArticles] = useState([]);
 
   const handleFindAllArticles = async () => {
@@ -41,7 +41,10 @@ function Search({ styles }) {
           <FormSearch
             handleChange={(event) => handleChange(event)}
           />
-          <Result listOfArticles={listOfArticles} />
+          <Result
+            handleOpenSearchBar={handleOpenSearchBar}
+            listOfArticles={listOfArticles}
+          />
         </div>
       </div>
     </div>

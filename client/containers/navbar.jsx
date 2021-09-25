@@ -157,6 +157,7 @@ function Navbar({ isLoggedIn, handleIsLoggedIn }) {
       />
 
       <Search
+        handleOpenSearchBar={handleOpenSearchBar}
         styles={
           searchBarIsOpen ? { transform: 'translateX(0)', opacity: 1, zIndex: 8 } : null
         }
