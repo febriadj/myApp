@@ -77,6 +77,20 @@ exports.CreateArticle = (req, res) => {
 exports.GetArticles = async (req, res) => {
   try {
     const keys = Object.keys(req.query)[0];
+
+    // Kondisi jika query parameternya adalah url
+    if ('url' in req.query) {
+      const dataByUrl = await ArticleModel.findOne({
+        url: req.query.url,
+      });
+
+      const content = fs.readFileSync(`${__dirname}/../../uploads/${dataByUrl.filename}`, 'utf8');
+
+      return res.status(200).json({
+        status: 'success', data: dataByUrl, content,
+      });
+    }
+
     // Kondisi jika endpoint terdapat query parameter
     if (keys in req.query) {
       const dataByParams = await ArticleModel.find({
