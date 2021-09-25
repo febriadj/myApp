@@ -3,11 +3,11 @@
   display: flex; justify-content: center;
 
   .article_content_wrap {
-    width: 800px;
-    padding: 40px 40px 40px 100px;
+    width: 1400px;
+    padding: 40px 40px 40px 120px;
 
     .content {
-      width: auto;
+      max-width: 800px;
       .header {
         margin: 0 0 80px 0;
         
@@ -42,11 +42,12 @@
           background: #fcf6ff;
           padding: 20px;
           white-space: pre-wrap;
+          background: #fcf6ff;
   
           code {
             margin: 0; padding: 0;
             border: none;
-            font-family: hack;
+            font-family: jetbrains_mono;
             font-size: 0.8rem;
             background: transparent;
             overflow-x: auto;
@@ -59,9 +60,20 @@
 
 @media screen and (max-width: 680px) {
   .article_content {
+    display: block;
 
     .article_content_wrap {
+      width: auto;
       padding: 80px 20px 20px 20px;
+
+      .content {
+        div {
+          pre {
+            white-space: pre;
+            overflow-x: auto;
+          }
+        }
+      }
     }
   }
 }

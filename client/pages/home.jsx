@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/pages/home.scss';
 
 function Home() {
+  const [doctitle, setDoctitle] = useState(document.title);
+
+  const handleDocTitle = () => setDoctitle('Febx - Home');
+
   useEffect(() => {
-    document.title = 'Febx - Home';
-  }, []);
+    document.title = doctitle;
+    handleDocTitle();
+  }, [doctitle]);
 
   return (
     <div className="home">

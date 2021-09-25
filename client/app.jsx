@@ -58,7 +58,7 @@ export default function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/dashboard">{isLoggedIn.status ? <DashArticle isLoggedIn={isLoggedIn} /> : <Default />}</Route>
         <Route exact path="/articles" component={Articles} />
-        <Route exact path="/articles/:url" component={ArticleContent} />
+        <Route path="/articles/:url" component={ArticleContent} />
         <Route component={Default} />
       </Switch>
     </Router>

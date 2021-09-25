@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../styles/pages/default.scss';
 
 export default function Default() {
+  const [doctitle, setDoctitle] = useState(document.title);
+
+  const handleDocTitle = () => setDoctitle('Febx - 404');
+
   useEffect(() => {
-    document.title = 'Febx - 404';
-  }, []);
+    document.title = doctitle;
+    handleDocTitle();
+  }, [doctitle]);
 
   return (
     <div className="default">
