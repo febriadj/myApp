@@ -14,6 +14,7 @@ import Home from './pages/home';
 import DashArticle from './pages/dashboard/article';
 import Articles from './pages/articles';
 import ArticleContent from './pages/articleContent';
+import Portfolio from './pages/portfolio';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -58,7 +59,8 @@ export default function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/dashboard">{isLoggedIn.status ? <DashArticle isLoggedIn={isLoggedIn} /> : <Default />}</Route>
         <Route exact path="/articles" component={Articles} />
-        <Route path="/articles/:url" component={ArticleContent} />
+        <Route exact path="/articles/:url" component={ArticleContent} />
+        <Route exact path="/portfolio" component={Portfolio} />
         <Route component={Default} />
       </Switch>
     </Router>
