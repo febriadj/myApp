@@ -10,8 +10,8 @@
 }
 
 @font-face {
-  font-family: 'jetbrains_mono';
-  src: url('../../assets/fonts/jetbrains-mono/JetBrainsMonoNL-Regular.ttf');
+  font-family: 'hack';
+  src: url('../../assets/fonts/hack/Hack-Regular.ttf');
 }
 
 * {
@@ -20,14 +20,14 @@
 }
 
 body {
-  font-family: neue_montreal; font-size: 16px;
+  font-family: neue_montreal; font-size: 1rem;
 }
 
 p { letter-spacing: 0.05rem; }
 h1, h2, h3 { line-height: 2.2rem; }
 
 input, button {
-  font-family: neue_montreal; font-size: 1.1rem;
+  font-family: neue_montreal; font-size: 1rem;
   background-color: transparent;
   border-radius: 0;
   letter-spacing: 0.1rem;
@@ -93,11 +93,11 @@ input:-webkit-autofill {
 
 @media screen and (max-width: 680px) {
   body {
-    font-size: 14px;
+    font-size: 0.9rem;
     background: #fff;
   }
 
   button, input {
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 }

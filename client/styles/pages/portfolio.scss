@@ -1,0 +1,95 @@
+.portfolio {
+  display: flex; justify-content: center;
+  width: 100%;
+
+  .portfolio_wrap {
+    width: 1400px;
+    padding: 40px 40px 40px 120px;
+
+    .header {
+      .header_intro {
+        display: flex; align-items: center;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+
+        .strip {
+          display: block;
+          width: 100px; height: 1px;
+          background: #303030;
+          margin: 0 20px 0 0;
+        }
+
+      }
+
+      .title {
+        font-size: 4rem;
+        line-height: 2.5rem;
+        margin: 15px 0 30px 0;
+      }
+      
+      .paragraf {
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
+    }
+
+    .skills {
+      margin: 80px 0 0 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+
+      .skills_text {
+        display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
+        .skills_text_header {
+          .title {
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+          }
+        }
+
+        .skills_text_footer {
+          .title {
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+          }
+
+          .list {
+            display: flex; align-items: center; gap: 20px;
+          }
+        }
+      }
+      
+      .skills_list {
+        display: grid; grid-template-columns: 1fr; gap: 15px;
+        
+        .skills_card {
+          text-transform: uppercase;
+          border-bottom: 1px solid #303030;
+          padding: 0 0 15px 0;
+          font-size: 0.85rem;
+          display: flex; justify-content: space-between;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 680px) {
+
+  .portfolio {
+    .portfolio_wrap {
+      padding: 100px 20px 20px 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+
+  .portfolio {
+    .portfolio_wrap {
+      .skills {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

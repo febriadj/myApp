@@ -95,10 +95,10 @@
 
     .menu_links {
       display: flex; flex-direction: column;
-      font-family: domaine_display;
+      text-transform: uppercase;
 
       .link {
-        font-size: 3rem;
+        font-size: 2.8rem;
         margin: 0 0 20px 0;
       }
     }
